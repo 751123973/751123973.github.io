@@ -61,16 +61,16 @@
 <link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=6.4.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.4.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+  <link rel="mask-icon" href="/images/favicon.ico?v=6.4.2" color="#222">
 
 
 
@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Winsoul&#39;s Blog">
 <meta property="og:description" content="前言2017年11月19日关于学习位操作，我可能会阐述个人理解以及在实际生活和在编程中的使用，将位操作和生活和编程更好的联系起来，以帮助自己理解，使学习更加深入，所以可能会有一些误解和错误的方面，希望可以和本人交流指出错误之处，感激不尽。  二进制1.0b表示二进制数，但是C中不可用。2.一个字节中有8位(bit)，无符号可以表示0~255之间的数字（unsigned char）；有符号可表示-1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-11-30T09:09:00.915Z">
+<meta property="og:updated_time" content="2018-10-01T14:50:59.383Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于位运算的笔记">
 <meta name="twitter:description" content="前言2017年11月19日关于学习位操作，我可能会阐述个人理解以及在实际生活和在编程中的使用，将位操作和生活和编程更好的联系起来，以帮助自己理解，使学习更加深入，所以可能会有一些误解和错误的方面，希望可以和本人交流指出错误之处，感激不尽。  二进制1.0b表示二进制数，但是C中不可用。2.一个字节中有8位(bit)，无符号可以表示0~255之间的数字（unsigned char）；有符号可表示-1">
@@ -368,7 +368,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2017-11-30 17:09:00" itemprop="dateModified" datetime="2017-11-30T17:09:00+08:00">2017-11-30</time>
+                <time title="修改时间：2018-10-01 22:50:59" itemprop="dateModified" datetime="2018-10-01T22:50:59+08:00">2018-10-01</time>
               
             
           </span>
@@ -404,6 +404,7 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>2017年11月19日<br>关于学习位操作，我可能会阐述个人理解以及在实际生活和在编程中的使用，将位操作和生活和编程更好的联系起来，以帮助自己理解，使学习更加深入，所以可能会有一些误解和错误的方面，希望可以和本人交流指出错误之处，感激不尽。</p>
 <hr>
 <h2 id="二进制"><a href="#二进制" class="headerlink" title="二进制"></a>二进制</h2><p>1.0b表示二进制数，但是C中不可用。<br>2.一个字节中有8位(bit)，无符号可以表示0~255之间的数字（unsigned char）；有符号可表示-128~+127（signed char）；</p>
+<a id="more"></a>
 <h2 id="二进制浮点型"><a href="#二进制浮点型" class="headerlink" title="二进制浮点型"></a>二进制浮点型</h2><p>1.使用幂作为分母例如 2^(-1);<br>2.二进制只能精确表示多个1/2的幂之和;</p>
 <h2 id="按位运算"><a href="#按位运算" class="headerlink" title="按位运算"></a>按位运算</h2><h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p>按位运算逻辑运算符：~（取反）、&amp;（按位与）、|（按位或），^（按位异或）；</p>
 <h3 id="取反"><a href="#取反" class="headerlink" title="取反"></a>取反</h3><p>取反~：每一位上0变1，1变0；</p>
@@ -545,7 +546,7 @@
 <p>右移运算符（&gt;&gt;=）与左移运算符用法基本相同；</p>
 <h2 id="移位运算符的用法"><a href="#移位运算符的用法" class="headerlink" title="移位运算符的用法"></a>移位运算符的用法</h2><p>移位运算符针对2的幂提供快速有效的乘法和除法：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">number &lt;&lt; n; <span class="comment">//number 乘于 2 的 n 次幂</span></span><br><span class="line">number &lt;&lt; n; <span class="comment">//number 除于 2 的 n 次幂</span></span><br></pre></td></tr></table></figure></p>
 <p>这些运算相当于十进制中移动小数点来乘于10或除于10的操作。</p>
-<h2 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a>代码实例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用移位制作流水灯项目</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(<span class="keyword">int</span> t)</span></span>; <span class="comment">//设置延时函数delay( ms)</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;	</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span>(i = <span class="number">0</span>;i &lt;= <span class="number">7</span>; i++)&#123;</span><br><span class="line">			P1 = ~(<span class="number">0x01</span> &lt;&lt; i); <span class="comment">//利用取反和移位实现LED灯流水效果</span></span><br><span class="line">			delay(<span class="number">100</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(i = <span class="number">0</span>;i &lt;= <span class="number">7</span>; i++)&#123;</span><br><span class="line">		 	P1 = ~(<span class="number">0x80</span> &gt;&gt; i);</span><br><span class="line">			delay(<span class="number">100</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(<span class="keyword">int</span> t)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">while</span>(t--)</span><br><span class="line">		<span class="keyword">for</span>( i = <span class="number">0</span>;i &lt; <span class="number">70</span>;i++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a>代码实例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用移位制作流水灯项目</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(<span class="keyword">int</span> t)</span></span>; <span class="comment">//设置延时函数delay( ms)</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span>(i = <span class="number">0</span>;i &lt;= <span class="number">7</span>; i++)&#123;</span><br><span class="line">			P1 = ~(<span class="number">0x01</span> &lt;&lt; i); <span class="comment">//利用取反和移位实现LED灯流水效果</span></span><br><span class="line">			delay(<span class="number">100</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(i = <span class="number">0</span>;i &lt;= <span class="number">7</span>; i++)&#123;</span><br><span class="line">		 	P1 = ~(<span class="number">0x80</span> &gt;&gt; i);</span><br><span class="line">			delay(<span class="number">100</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(<span class="keyword">int</span> t)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">while</span>(t--)</span><br><span class="line">		<span class="keyword">for</span>( i = <span class="number">0</span>;i &lt; <span class="number">70</span>;i++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="参考书籍"><a href="#参考书籍" class="headerlink" title="参考书籍"></a>参考书籍</h2><p>《C Primer Plus》,《C和指针》,《C语言从入门到精通》,《编码(code):隐匿在计算机软硬件背后的语言》,《手把手教你学51单片机》</p>
 
@@ -808,8 +809,13 @@
   本站访客数:<span id="busuanzi_value_site_uv"> </span>
 </span>
 </div>
-<!--  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div> -->
 
+
+  <span class="post-meta-divider">|</span>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+ 
 
 
   <span class="post-meta-divider">|</span>

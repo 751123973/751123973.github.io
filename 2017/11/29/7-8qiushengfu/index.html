@@ -61,16 +61,16 @@
 <link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=6.4.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.4.2">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+  <link rel="mask-icon" href="/images/favicon.ico?v=6.4.2" color="#222">
 
 
 
@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Winsoul&#39;s Blog">
 <meta property="og:description" content="8球胜负(eight) UESTC - 24  8球是一种台球竞赛的规则。台面上有7个红球、7个黄球以及一个黑球，当然还有一个白球。对于本题，我们使用如下的简化规则：红、黄两名选手轮流用白球击打各自颜色的球，如果将该颜色的7个球全部打进，则这名选手可以打黑球，如果打进则算他胜。如果在打进自己颜色的所有球之前就把黑球打进，则算输。如果选手不慎打进了对手的球，入球依然有效。 现在给出打进的球（白球除外">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-11-30T12:19:04.180Z">
+<meta property="og:updated_time" content="2018-10-01T14:53:43.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【每日一题(7)】8球胜负(eight) UESTC - 24 (电子科技大学第六届ACM程序设计大赛)">
 <meta name="twitter:description" content="8球胜负(eight) UESTC - 24  8球是一种台球竞赛的规则。台面上有7个红球、7个黄球以及一个黑球，当然还有一个白球。对于本题，我们使用如下的简化规则：红、黄两名选手轮流用白球击打各自颜色的球，如果将该颜色的7个球全部打进，则这名选手可以打黑球，如果打进则算他胜。如果在打进自己颜色的所有球之前就把黑球打进，则算输。如果选手不慎打进了对手的球，入球依然有效。 现在给出打进的球（白球除外">
@@ -368,7 +368,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2017-11-30 20:19:04" itemprop="dateModified" datetime="2017-11-30T20:19:04+08:00">2017-11-30</time>
+                <time title="修改时间：2018-10-01 22:53:43" itemprop="dateModified" datetime="2018-10-01T22:53:43+08:00">2018-10-01</time>
               
             
           </span>
@@ -406,6 +406,7 @@
 <p>现在给出打进的球（白球除外）的顺序，以及黑球由哪方打进，你的任务是判定哪方是胜者。</p>
 <p>假设不会有一杆同时打进一颗黑球和其他彩球。</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><blockquote>
 <p>输入包含多组数据。每组数据第一行是一个整数NN(1≤N≤15)，表示打进的球的个数，N=0表示结束。随后有一行，包含N个字符，依序表示打进的是何种球。如果是B，表示是红方打进的黑球，如果是L，表示是黄方打进的黑球。如果是Y则表示是黄球，R表示红球。字符间没有空格。</p>
 <p>所有输入都满足如下条件：最后一颗球打进时这局比赛正好结束，而且打进的红球和黑球都不超过7个。</p>
@@ -423,6 +424,7 @@
 <p>略</p>
 </blockquote>
 <h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n) != EOF || n != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> r = <span class="number">0</span>,y = <span class="number">0</span>,i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">char</span> a[<span class="number">16</span>];</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>,&amp;a);</span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[i] == <span class="string">'Y'</span>)</span><br><span class="line">                y++;</span><br><span class="line">            <span class="keyword">if</span>(a[i] == <span class="string">'R'</span>)</span><br><span class="line">                r++;</span><br><span class="line">        &#125;     </span><br><span class="line">		<span class="keyword">if</span>(a[n - <span class="number">1</span>] == <span class="string">'B'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(r == <span class="number">7</span>)</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"Red\n"</span>);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"Yellow\n"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="keyword">if</span>(a[n - <span class="number">1</span>] == <span class="string">'L'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(y == <span class="number">7</span>)</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"Yellow\n"</span>);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"Red\n"</span>);</span><br><span class="line">    	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -680,8 +682,13 @@
   本站访客数:<span id="busuanzi_value_site_uv"> </span>
 </span>
 </div>
-<!--  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div> -->
 
+
+  <span class="post-meta-divider">|</span>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+ 
 
 
   <span class="post-meta-divider">|</span>
