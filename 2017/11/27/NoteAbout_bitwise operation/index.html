@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言2017年11月19日关于学习位操作，我可能会阐述个人理解以及在实际生活和在编程中的使用，将位操作和生活和编程更好的联系起来，以帮助自己理解，使学习更加深入，所以可能会有一些误解和错误的方面，希望可以和本人交流指出错误之处，感激不尽。  二进制1.0b表示二进制数，但是C中不可用。2.一个字节中有8位(bit)，无符号可以表示0~255之间的数字（unsigned char）；有符号可表示-1">
+<meta name="keywords" content="C&#x2F;C++,编程,笔记,学习,位运算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于位运算的笔记">
+<meta property="og:url" content="http://yoursite.com/2017/11/27/NoteAbout_bitwise operation/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言2017年11月19日关于学习位操作，我可能会阐述个人理解以及在实际生活和在编程中的使用，将位操作和生活和编程更好的联系起来，以帮助自己理解，使学习更加深入，所以可能会有一些误解和错误的方面，希望可以和本人交流指出错误之处，感激不尽。  二进制1.0b表示二进制数，但是C中不可用。2.一个字节中有8位(bit)，无符号可以表示0~255之间的数字（unsigned char）；有符号可表示-1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-30T09:09:00.915Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于位运算的笔记">
+<meta name="twitter:description" content="前言2017年11月19日关于学习位操作，我可能会阐述个人理解以及在实际生活和在编程中的使用，将位操作和生活和编程更好的联系起来，以帮助自己理解，使学习更加深入，所以可能会有一些误解和错误的方面，希望可以和本人交流指出错误之处，感激不尽。  二进制1.0b表示二进制数，但是C中不可用。2.一个字节中有8位(bit)，无符号可以表示0~255之间的数字（unsigned char）；有符号可表示-1">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/27/NoteAbout_bitwise operation/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>关于位运算的笔记 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/27/NoteAbout_bitwise operation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">关于位运算的笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2017-11-27 00:33:18" itemprop="dateCreated datePublished" datetime="2017-11-27T00:33:18+08:00">2017-11-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2017-11-30 17:09:00" itemprop="dateModified" datetime="2017-11-30T17:09:00+08:00">2017-11-30</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>2017年11月19日<br>关于学习位操作，我可能会阐述个人理解以及在实际生活和在编程中的使用，将位操作和生活和编程更好的联系起来，以帮助自己理解，使学习更加深入，所以可能会有一些误解和错误的方面，希望可以和本人交流指出错误之处，感激不尽。</p>
+<hr>
+<h2 id="二进制"><a href="#二进制" class="headerlink" title="二进制"></a>二进制</h2><p>1.0b表示二进制数，但是C中不可用。<br>2.一个字节中有8位(bit)，无符号可以表示0~255之间的数字（unsigned char）；有符号可表示-128~+127（signed char）；</p>
+<h2 id="二进制浮点型"><a href="#二进制浮点型" class="headerlink" title="二进制浮点型"></a>二进制浮点型</h2><p>1.使用幂作为分母例如 2^(-1);<br>2.二进制只能精确表示多个1/2的幂之和;</p>
+<h2 id="按位运算"><a href="#按位运算" class="headerlink" title="按位运算"></a>按位运算</h2><h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p>按位运算逻辑运算符：~（取反）、&amp;（按位与）、|（按位或），^（按位异或）；</p>
+<h3 id="取反"><a href="#取反" class="headerlink" title="取反"></a>取反</h3><p>取反~：每一位上0变1，1变0；</p>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th>~a</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>   <code>~11001100 = 00110011</code></p>
+<h3 id="按位与"><a href="#按位与" class="headerlink" title="按位与"></a>按位与</h3><p>按位与&amp;：每一位上其中一个为0则取0，都为1则取1；</p>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th>b</th>
+<th>a&amp;b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>   <code>10010011 &amp; 00111101 = 0010001</code></p>
+<h3 id="按位或"><a href="#按位或" class="headerlink" title="按位或"></a>按位或</h3><p>按位或|：每一位上其中一个为1则取1，都为0则取0；</p>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th>b</th>
+<th>a或b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>   <code>10010011 | 00111101 = 10111111</code></p>
+<h3 id="按位异或"><a href="#按位异或" class="headerlink" title="按位异或"></a>按位异或</h3><p>按位异或^:每一位上两个相同则为0，不同则为1；</p>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th>b</th>
+<th>a^b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>   <code>10010011^00111101 = 10101110</code></p>
+<h4 id="异或特性"><a href="#异或特性" class="headerlink" title="异或特性"></a>异或特性</h4><p>异或偶数次会变回原来的数字</p>
+<h2 id="移位运算符"><a href="#移位运算符" class="headerlink" title="移位运算符"></a>移位运算符</h2><h3 id="左移：-lt-lt"><a href="#左移：-lt-lt" class="headerlink" title="左移： &lt;&lt;"></a>左移： &lt;&lt;</h3><p>   左移运算符将原有的数字向左移动指定的位数；移出左末端的位数将会丢失，而右端则会用‘0’补充空缺的位置。<br>    <code>(10001010) &lt;&lt; 2 = (00101000) //可以看出，数字向左移动两位，左末端数字丢失，右端补‘0’</code><br>这样的操作产生了新的数字，但是并不会赋值，例如<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num = <span class="number">1</span>;</span><br><span class="line">num &lt;&lt; <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
+<p>   这种操作中，num依旧是1，并不会有任何改变；若需要改变变量，则需要 &lt;&lt;= 来实现；<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num = <span class="number">1</span>;</span><br><span class="line">num &lt;&lt;= <span class="number">2</span>; <span class="comment">//等价于 num = num &lt;&lt; 2;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="右移：-gt-gt"><a href="#右移：-gt-gt" class="headerlink" title="右移： &gt;&gt;"></a>右移： &gt;&gt;</h3><p>   与左移基本相同；在右移运算中，右末端位数将会丢失；<strong>但是，对于左末端而言。对于无符号类型，将会用‘0’补齐空位；而对于有符号类型，结果将取决于机器，空出的符号可用‘0’补充，或者用符号位的副本补充。</strong>例如：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">10001010</span>) &gt;&gt; <span class="number">2</span></span><br><span class="line">(<span class="number">00100010</span>)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">10001010</span>) &gt;&gt; <span class="number">2</span></span><br><span class="line">(<span class="number">11100010</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>以上是有符号类型在不同机器上的不同运算结果，而下面是无符号类型的运算结果</strong></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">10001010</span>) &gt;&gt; <span class="number">2</span></span><br><span class="line">(<span class="number">00100010</span>)</span><br></pre></td></tr></table></figure>
+<p>右移运算符（&gt;&gt;=）与左移运算符用法基本相同；</p>
+<h2 id="移位运算符的用法"><a href="#移位运算符的用法" class="headerlink" title="移位运算符的用法"></a>移位运算符的用法</h2><p>移位运算符针对2的幂提供快速有效的乘法和除法：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">number &lt;&lt; n; <span class="comment">//number 乘于 2 的 n 次幂</span></span><br><span class="line">number &lt;&lt; n; <span class="comment">//number 除于 2 的 n 次幂</span></span><br></pre></td></tr></table></figure></p>
+<p>这些运算相当于十进制中移动小数点来乘于10或除于10的操作。</p>
+<h2 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a>代码实例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用移位制作流水灯项目</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;reg52.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(<span class="keyword">int</span> t)</span></span>; <span class="comment">//设置延时函数delay( ms)</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;	</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span>(i = <span class="number">0</span>;i &lt;= <span class="number">7</span>; i++)&#123;</span><br><span class="line">			P1 = ~(<span class="number">0x01</span> &lt;&lt; i); <span class="comment">//利用取反和移位实现LED灯流水效果</span></span><br><span class="line">			delay(<span class="number">100</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(i = <span class="number">0</span>;i &lt;= <span class="number">7</span>; i++)&#123;</span><br><span class="line">		 	P1 = ~(<span class="number">0x80</span> &gt;&gt; i);</span><br><span class="line">			delay(<span class="number">100</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(<span class="keyword">int</span> t)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">while</span>(t--)</span><br><span class="line">		<span class="keyword">for</span>( i = <span class="number">0</span>;i &lt; <span class="number">70</span>;i++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="参考书籍"><a href="#参考书籍" class="headerlink" title="参考书籍"></a>参考书籍</h2><p>《C Primer Plus》,《C和指针》,《C语言从入门到精通》,《编码(code):隐匿在计算机软硬件背后的语言》,《手把手教你学51单片机》</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C-C/" rel="tag"># C/C++</a>
+          
+            <a href="/tags/编程/" rel="tag"># 编程</a>
+          
+            <a href="/tags/笔记/" rel="tag"># 笔记</a>
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+            <a href="/tags/位运算/" rel="tag"># 位运算</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/26/4-wo-xiang-zhao-ge-nv-peng-you/" rel="next" title="【每日一题(4)】我想找个女朋友 HRBUST - 1978">
+                <i class="fa fa-chevron-left"></i> 【每日一题(4)】我想找个女朋友 HRBUST - 1978
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/27/5-kai-sa-mi-ma/" rel="prev" title="【每日一题(5)】密码(凯撒密码) FZU - 1489 (福州大学第四届程序设计竞赛题)">
+                【每日一题(5)】密码(凯撒密码) FZU - 1489 (福州大学第四届程序设计竞赛题) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">45</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">Tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制"><span class="nav-number">2.</span> <span class="nav-text">二进制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制浮点型"><span class="nav-number">3.</span> <span class="nav-text">二进制浮点型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按位运算"><span class="nav-number">4.</span> <span class="nav-text">按位运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">4.1.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取反"><span class="nav-number">4.2.</span> <span class="nav-text">取反</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按位与"><span class="nav-number">4.3.</span> <span class="nav-text">按位与</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按位或"><span class="nav-number">4.4.</span> <span class="nav-text">按位或</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按位异或"><span class="nav-number">4.5.</span> <span class="nav-text">按位异或</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#异或特性"><span class="nav-number">4.5.1.</span> <span class="nav-text">异或特性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移位运算符"><span class="nav-number">5.</span> <span class="nav-text">移位运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#左移：-lt-lt"><span class="nav-number">5.1.</span> <span class="nav-text">左移： &lt;&lt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#右移：-gt-gt"><span class="nav-number">5.2.</span> <span class="nav-text">右移： &gt;&gt;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移位运算符的用法"><span class="nav-number">6.</span> <span class="nav-text">移位运算符的用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实例"><span class="nav-number">7.</span> <span class="nav-text">代码实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考书籍"><span class="nav-number">8.</span> <span class="nav-text">参考书籍</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
