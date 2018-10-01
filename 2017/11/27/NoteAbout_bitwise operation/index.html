@@ -383,6 +383,7 @@
 <h2 id="二进制浮点型"><a href="#二进制浮点型" class="headerlink" title="二进制浮点型"></a>二进制浮点型</h2><p>1.使用幂作为分母例如 2^(-1);<br>2.二进制只能精确表示多个1/2的幂之和;</p>
 <h2 id="按位运算"><a href="#按位运算" class="headerlink" title="按位运算"></a>按位运算</h2><h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p>按位运算逻辑运算符：~（取反）、&amp;（按位与）、|（按位或），^（按位异或）；</p>
 <h3 id="取反"><a href="#取反" class="headerlink" title="取反"></a>取反</h3><p>取反~：每一位上0变1，1变0；</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -401,8 +402,10 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>   <code>~11001100 = 00110011</code></p>
 <h3 id="按位与"><a href="#按位与" class="headerlink" title="按位与"></a>按位与</h3><p>按位与&amp;：每一位上其中一个为0则取0，都为1则取1；</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -434,8 +437,10 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>   <code>10010011 &amp; 00111101 = 0010001</code></p>
 <h3 id="按位或"><a href="#按位或" class="headerlink" title="按位或"></a>按位或</h3><p>按位或|：每一位上其中一个为1则取1，都为0则取0；</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -467,8 +472,10 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>   <code>10010011 | 00111101 = 10111111</code></p>
 <h3 id="按位异或"><a href="#按位异或" class="headerlink" title="按位异或"></a>按位异或</h3><p>按位异或^:每一位上两个相同则为0，不同则为1；</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -500,6 +507,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>   <code>10010011^00111101 = 10101110</code></p>
 <h4 id="异或特性"><a href="#异或特性" class="headerlink" title="异或特性"></a>异或特性</h4><p>异或偶数次会变回原来的数字</p>
 <h2 id="移位运算符"><a href="#移位运算符" class="headerlink" title="移位运算符"></a>移位运算符</h2><h3 id="左移：-lt-lt"><a href="#左移：-lt-lt" class="headerlink" title="左移： &lt;&lt;"></a>左移： &lt;&lt;</h3><p>   左移运算符将原有的数字向左移动指定的位数；移出左末端的位数将会丢失，而右端则会用‘0’补充空缺的位置。<br>    <code>(10001010) &lt;&lt; 2 = (00101000) //可以看出，数字向左移动两位，左末端数字丢失，右端补‘0’</code><br>这样的操作产生了新的数字，但是并不会赋值，例如<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num = <span class="number">1</span>;</span><br><span class="line">num &lt;&lt; <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>

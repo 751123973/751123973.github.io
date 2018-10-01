@@ -379,17 +379,11 @@
       
         <h2 id="Halloween-Costumes-LightOJ-1422"><a href="#Halloween-Costumes-LightOJ-1422" class="headerlink" title="Halloween Costumes LightOJ-1422"></a><a href="https://vjudge.net/problem/LightOJ-1422" target="_blank" rel="noopener">Halloween Costumes LightOJ-1422</a></h2><blockquote>
 <p>Gappu has a very busy weekend ahead of him. Because, next weekend is Halloween, and he is planning to attend as many parties as he can. Since it’s Halloween, these parties are all costume parties, Gappu always selects his costumes in such a way that it blends with his friends, that is, when he is attending the party, arranged by his comic-book-fan friends, he will go with the costume of Superman, but when the party is arranged contest-buddies, he would go with the costume of ‘Chinese Postman’.</p>
-</blockquote>
-<blockquote>
 <p>Since he is going to attend a number of parties on the Halloween night, and wear costumes accordingly, he will be changing his costumes a number of times. So, to make things a little easier, he may put on costumes one over another (that is he may wear the uniform for the postman, over the superman costume). Before each party he can take off some of the costumes, or wear a new one. That is, if he is wearing the Postman uniform over the Superman costume, and wants to go to a party in Superman costume, he can take off the Postman uniform, or he can wear a new Superman uniform. But, keep in mind that, Gappu doesn’t like to wear dresses without cleaning them first, so, after taking off the Postman uniform, he cannot use that again in the Halloween night, if he needs the Postman costume again, he will have to use a new one. He can take off any number of costumes, and if he takes off k of the costumes, that will be the last k ones (e.g. if he wears costume A before costume B, to take off A, first he has to remove B).</p>
-</blockquote>
-<blockquote>
 <p>Given the parties and the costumes, find the minimum number of costumes Gappu will need in the Halloween night.</p>
 </blockquote>
 <h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><blockquote>
 <p>Input starts with an integer T (≤ 200), denoting the number of test cases.</p>
-</blockquote>
-<blockquote>
 <p>Each case starts with a line containing an integer N (1 ≤ N ≤ 100) denoting the number of parties. Next line contains N integers, where the ith integer ci (1 ≤ ci ≤ 100) denotes the costume he will be wearing in party i. He will attend party 1 first, then party 2, and so on.</p>
 </blockquote>
 <h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><blockquote>
@@ -407,8 +401,6 @@
 <blockquote>
 <p>dp[i][j] = min{dp[i][j],dp[i][k] + dp[k + 1][j] + w[i][j]};</p>
 </blockquote>
-</blockquote>
-<blockquote>
 <p>的状态转移式来写。</p>
 <p>我们用dp[i][j]表示从第i到第j场需要准备的衣服<br>于是，当在第j场时，如果他新穿一件衣服，即dp[i][j] = dp[i][j - 1] + 1;<br>如果，如果他不新穿一件，就要找到与第j场穿同样衣服的场次k。<br>当找到穿同意衣服的场次k，意味着他的第j场的衣服要在第k场保留到第j场。<br>即在第k场后穿的衣服，要在第j场前全部脱掉，这样子才可以把第j场的衣服漏出来；<br>即 dp[i][j] = dp[i][k] + dp[k + 1][j - 1];</p>
 </blockquote>
