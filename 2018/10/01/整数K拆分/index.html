@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="整数的K拆分整数K拆分示例在程序设计竞赛中，我们会经常遇到一类整数 $K$ 拆分的问题。  例如：求 $N$ 个非负整数之和为 $S$ 的方案数(每个数字都小于 $M$)。 对于这类问题，分为两种情况：①没有条件限制。 ②有条件限制。 没有条件限制当 $N = 2,S = 4$ 时，有$1.\quad0 + 4$$2.\quad1 + 3$$3.\quad2 + 2$$4.\quad3 + 1$$">
+<meta name="keywords" content="ACM,C&#x2F;C++,编程,算法,组合数学,容斥原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ACM中的整数K拆分 (有条件限制 无条件限制 插板法 URAL-1036 HDU-6397)">
+<meta property="og:url" content="http://yoursite.com/2018/10/01/整数K拆分/index.html">
+<meta property="og:site_name" content="Winsoul&#39;s Blog">
+<meta property="og:description" content="整数的K拆分整数K拆分示例在程序设计竞赛中，我们会经常遇到一类整数 $K$ 拆分的问题。  例如：求 $N$ 个非负整数之和为 $S$ 的方案数(每个数字都小于 $M$)。 对于这类问题，分为两种情况：①没有条件限制。 ②有条件限制。 没有条件限制当 $N = 2,S = 4$ 时，有$1.\quad0 + 4$$2.\quad1 + 3$$3.\quad2 + 2$$4.\quad3 + 1$$">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-01T16:03:51.828Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ACM中的整数K拆分 (有条件限制 无条件限制 插板法 URAL-1036 HDU-6397)">
+<meta name="twitter:description" content="整数的K拆分整数K拆分示例在程序设计竞赛中，我们会经常遇到一类整数 $K$ 拆分的问题。  例如：求 $N$ 个非负整数之和为 $S$ 的方案数(每个数字都小于 $M$)。 对于这类问题，分为两种情况：①没有条件限制。 ②有条件限制。 没有条件限制当 $N = 2,S = 4$ 时，有$1.\quad0 + 4$$2.\quad1 + 3$$3.\quad2 + 2$$4.\quad3 + 1$$">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/01/整数K拆分/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ACM中的整数K拆分 (有条件限制 无条件限制 插板法 URAL-1036 HDU-6397) | Winsoul's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Winsoul's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">要有梦想，即使遥远。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />总览</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/01/整数K拆分/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Winsoul">
+      <meta itemprop="description" content="要有梦想，即使遥远。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Winsoul's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ACM中的整数K拆分 (有条件限制 无条件限制 插板法 URAL-1036 HDU-6397)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-01 23:59:56" itemprop="dateCreated datePublished" datetime="2018-10-01T23:59:56+08:00">2018-10-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-02 00:03:51" itemprop="dateModified" datetime="2018-10-02T00:03:51+08:00">2018-10-02</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="整数的K拆分"><a href="#整数的K拆分" class="headerlink" title="整数的K拆分"></a>整数的K拆分</h2><h3 id="整数K拆分示例"><a href="#整数K拆分示例" class="headerlink" title="整数K拆分示例"></a>整数K拆分示例</h3><p>在程序设计竞赛中，我们会经常遇到一类整数 $K$ 拆分的问题。</p>
+<blockquote>
+<p>例如：求 $N$ 个非负整数之和为 $S$ 的方案数(<del>每个数字都小于 $M$</del>)。</p>
+<p>对于这类问题，分为两种情况：①没有条件限制。 ②有条件限制。</p>
+<h4 id="没有条件限制"><a href="#没有条件限制" class="headerlink" title="没有条件限制"></a>没有条件限制</h4><p>当 $N = 2,S = 4$ 时，有<br>$1.\quad0 + 4$<br>$2.\quad1 + 3$<br>$3.\quad2 + 2$<br>$4.\quad3 + 1$<br>$5.\quad4 + 0$</p>
+</blockquote>
+<p>对于没有条件限制的问题，直接使用插板法求解即可。<br>例如要用 $n$ 个数字之和等于 $s$。不妨假设要把 $s$ 个球，用 $n -1$ 块板分为 $n$ 组(可为空集)。这样子，用板隔开的球数，就是划分出的 $n$ 个数。<br>例如 $n = 4，s = 10$ 时，我们可以找到一种情况为 $1 + 5 + 0 + 4$，即：</p>
+<script type="math/tex; mode=display">o\ |\ o\ o\ o\ o\ o\ |\ |\ o\ o\ o\ o</script><p>因此我们可以看成在 $n - 1 + s$ 个空位上，选择 $n - 1$ 个位置来插入板，将数字隔开。即：<script type="math/tex">C_{n-1+s}^{n-1}</script></p>
+<a id="more"></a>
+<h4 id="有条件限制"><a href="#有条件限制" class="headerlink" title="有条件限制"></a>有条件限制</h4><p>有条件限制的类型题目通常为：</p>
+<blockquote>
+<p>例如：求 $n$ 个非负整数之和为 $s$ 的方案数，每个数字都小于 $m$。</p>
+</blockquote>
+<p>例如 $n = 2，s = 6，m = 5$：</p>
+<blockquote>
+<p>$1.\quad2+4$<br>$2.\quad3+3$<br>$3.\quad4+2$</p>
+</blockquote>
+<p>对于这种情况，我们也可以使用插板法 + 容斥原理。<br>首先要知道，我们使用容斥原理的步骤是：先把没有限制的情况算出来 $-$ 不符合条件的情况。<br>上面已经讲到，没有限制条件的情况总数为 $C_{n-1+s}^{n-1}$。</p>
+<p>而我们接下来只需要算不符合条件的情况，即存在至少一个数字不小于给定的 $m$。<br>显然，计算不符合条件的情况总数是 <strong>至少一个位置不符合条件的总数</strong> 减去 <strong>至少两个位置不符合条件的总数</strong> 加上 <strong>至少三个位置符合条件的种数</strong>……</p>
+<p>那怎么计算至少 $i$ 个位置不符合条件的总数呢？<br>假设题目为： 求 $n$ 个非负整数之和为 $s$ 的方案数，每个数字都小于 $m$。</p>
+<p>我们想计算出不符合条件的情况，我们可以考虑构造出不符合条件的情况。<br>如果我们取出 $im$ 个小球出来，再对 $n-1+s-im$ 个小球使用一样的插板法。即得  $C_{n-1+s-im}^{n-1}$。<br>然后我们再将这取出来的 $i*m$ 个小球分成 $i$ 组，每组 $m$ 个。在上述插完板后的 $n$ 个空隙中，选择 $i$ 个不同的位置，把 $i$ 组小球塞回到插板中。</p>
+<p>如此一来，就可以构造出 $i$ 个数字不符合条件的情况。即：</p>
+<script type="math/tex; mode=display">C_{n-1+s-i*m}^{n-1}  C_{n}^{i}</script><p>但是还需要容斥，即：</p>
+<script type="math/tex; mode=display">\sum_{i=0}^{n}(-1)^{i}C_{n-1+s-i*m}^{n-1}  C_{n}^{i}</script><h2 id="Lucky-Tickets-URAL-1036"><a href="#Lucky-Tickets-URAL-1036" class="headerlink" title="Lucky Tickets URAL - 1036"></a><a href="http://acm.timus.ru/problem.aspx?space=1&amp;num=1036" target="_blank" rel="noopener">Lucky Tickets URAL - 1036</a></h2><h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>给定一个 $N$ 和一个 $S$ ，存在某些数字长度为 $2N$ 且前后两部分的和相等，而且要求整个数字的和为 $S$ ，问你这样数字的个数。</p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>可以发现，我们只需要找到 $N$ 个数字和为 $\frac{S}{2}$ 的数字个数，然后平方一下就是答案所求的方案数。<br>不难发现还有一个要求是每一位数字都是 $0$ 到 $9$ 的。</p>
+<p>于是我们可以得到这么一个式子：</p>
+<script type="math/tex; mode=display">S = \sum_{i=0}^{n}(-1)^iC_{\frac{S}{2}+n-1-10*i}^{n-1}C_{n}^{i}</script><p>由于数字较大，所以使用了 JAVA 的大数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.math.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">static</span> BigInteger <span class="title">C</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (m &gt; n) <span class="keyword">return</span> BigInteger.ZERO;</span><br><span class="line">		BigInteger ans = BigInteger.ONE;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">			ans = ans.multiply(BigInteger.valueOf(n - i));</span><br><span class="line">			ans = ans.divide(BigInteger.valueOf(i + <span class="number">1</span>));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner cin = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> n = cin.nextInt(), s = cin.nextInt();</span><br><span class="line">		<span class="keyword">if</span> (s%<span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">"0"</span>);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		BigInteger ans = BigInteger.ZERO;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; i++) &#123;</span><br><span class="line">			BigInteger delta = C(n - <span class="number">1</span> + s/<span class="number">2</span> - i*<span class="number">10</span>, n - <span class="number">1</span>).multiply(C(n, i));</span><br><span class="line">			ans = ans.add(BigInteger.valueOf((<span class="keyword">long</span>)Math.pow(-<span class="number">1</span>, i%<span class="number">2</span>)).multiply(delta));</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(ans.multiply(ans));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Character-Encoding-HDU-6397"><a href="#Character-Encoding-HDU-6397" class="headerlink" title="Character Encoding HDU - 6397"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6397" target="_blank" rel="noopener">Character Encoding HDU - 6397</a></h2><h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><p>求把 $k$ 分解为 $m$ 部分，且每部分都小于 $n$ 的方案数( $mod\ 998244353$ )。</p>
+<h3 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3><p>这道题也是普通的整数 $k$ 拆分。只不过加上了 $mod\ 998244353$ 而已。<br>由于答案要膜一个数，所以就把组合数用逆元求就行了。</p>
+<script type="math/tex; mode=display">S = \sum_{i=0}^{m}(-1)^iC_{k+m-1-n*i}^{m-1}C_{m}^{i}</script><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">const</span> LL mod = <span class="number">998244353</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">3e5</span> + <span class="number">10</span>;</span><br><span class="line">LL fact[maxn], inv[maxn], T, n, m, k, ans;</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">power</span><span class="params">(LL a, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  LL ans = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span> (x) &#123;</span><br><span class="line">    <span class="keyword">if</span> (x &amp; <span class="number">1</span>) ans = (ans * a) % mod;</span><br><span class="line">    a = (a * a) % mod;</span><br><span class="line">    x &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  fact[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; maxn; i++) &#123;</span><br><span class="line">    fact[i] = fact[i - <span class="number">1</span>] * i % mod;</span><br><span class="line">  &#125;</span><br><span class="line">  inv[maxn - <span class="number">1</span>] = power(fact[maxn - <span class="number">1</span>], mod - <span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = maxn - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">    inv[i] = inv[i + <span class="number">1</span>] * (i + <span class="number">1</span>) % mod;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">C</span><span class="params">(LL n, LL m)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (m &gt; n) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> (fact[n] * inv[n - m]) %mod * inv[m] % mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  init();</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;T);</span><br><span class="line">  <span class="keyword">while</span> (T--) &#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld %lld %lld"</span>, &amp;n, &amp;m, &amp;k);</span><br><span class="line">    ans = C(k + m - <span class="number">1</span>, m - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">      ans = (ans + (LL)<span class="built_in">pow</span>(<span class="number">-1</span>, i%<span class="number">2</span>) * (C(k + m - <span class="number">1</span> - n * i, m - <span class="number">1</span>) * C(m, i))%mod + mod)%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans %mod);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>其实还有一道题是每一个位置都有不同条件限制，暂时没有找到那道题。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ACM/" rel="tag"># ACM</a>
+          
+            <a href="/tags/C-C/" rel="tag"># C/C++</a>
+          
+            <a href="/tags/编程/" rel="tag"># 编程</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+            <a href="/tags/组合数学/" rel="tag"># 组合数学</a>
+          
+            <a href="/tags/容斥原理/" rel="tag"># 容斥原理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/01/JiaoZuo选拔赛/" rel="next" title="SUST_2018 焦作站亚洲区域赛校内选拔赛 题解">
+                <i class="fa fa-chevron-left"></i> SUST_2018 焦作站亚洲区域赛校内选拔赛 题解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Winsoul" />
+            
+              <p class="site-author-name" itemprop="name">Winsoul</p>
+              <p class="site-description motion-element" itemprop="description">要有梦想，即使遥远。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/qq_40861916" title="MY_CSDN博客" target="_blank">MY_CSDN博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://me.csdn.net/qq_40507857" title="队友紫芝博客" target="_blank">队友紫芝博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://me.csdn.net/qq_40873884" title="队友Amon_cj博客" target="_blank">队友Amon_cj博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#整数的K拆分"><span class="nav-number">1.</span> <span class="nav-text">整数的K拆分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整数K拆分示例"><span class="nav-number">1.1.</span> <span class="nav-text">整数K拆分示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#没有条件限制"><span class="nav-number">1.1.1.</span> <span class="nav-text">没有条件限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有条件限制"><span class="nav-number">1.1.2.</span> <span class="nav-text">有条件限制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lucky-Tickets-URAL-1036"><span class="nav-number">2.</span> <span class="nav-text">Lucky Tickets URAL - 1036</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">2.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解"><span class="nav-number">2.2.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Character-Encoding-HDU-6397"><span class="nav-number">3.</span> <span class="nav-text">Character Encoding HDU - 6397</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题意-1"><span class="nav-number">3.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解-1"><span class="nav-number">3.2.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">4.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Winsoul</span>
+
+  
+
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"> </span>
+</span>
+</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+ 
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
