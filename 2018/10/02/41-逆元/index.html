@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Winsoul&#39;s Blog">
 <meta property="og:description" content="逆元的三种求法 费马小定理，扩展欧几里得，递推求阶乘逆元  逆元对于一个实数 $A$ 如果存在一个 $x$ 使得 $Ax = 1$，我们就把这个 $x$ 叫做 $A$ 的逆元，记做 $x = A^{-1}$。在一般数学中，我们所说的逆元就是倒数。 但是在数论中，如果一个数字 $A$ 存在一个对 $p$ 的逆元 $x$，就可以写成 $Ax≡1\ mod\ p$ 的形式(此处 $p$ 与 $A$ 互质">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-02T15:34:40.581Z">
+<meta property="og:updated_time" content="2018-10-02T15:42:55.608Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="逆元的三种求法 (费马小定理，扩展欧几里得，递推求阶乘逆元)">
 <meta name="twitter:description" content="逆元的三种求法 费马小定理，扩展欧几里得，递推求阶乘逆元  逆元对于一个实数 $A$ 如果存在一个 $x$ 使得 $Ax = 1$，我们就把这个 $x$ 叫做 $A$ 的逆元，记做 $x = A^{-1}$。在一般数学中，我们所说的逆元就是倒数。 但是在数论中，如果一个数字 $A$ 存在一个对 $p$ 的逆元 $x$，就可以写成 $Ax≡1\ mod\ p$ 的形式(此处 $p$ 与 $A$ 互质">
@@ -382,7 +382,7 @@
                 
               
 
-              <time title="创建时间：2018-10-02 23:30:53 / 修改时间：23:34:40" itemprop="dateCreated datePublished" datetime="2018-10-02T23:30:53+08:00">2018-10-02</time>
+              <time title="创建时间：2018-10-02 23:30:53 / 修改时间：23:42:55" itemprop="dateCreated datePublished" datetime="2018-10-02T23:30:53+08:00">2018-10-02</time>
             
 
             
@@ -439,7 +439,7 @@
 <div class="note danger no-icon"><p><font color="#dd0000">上面这种除法运算是错误的！</font></p></div>
 
 
-<p>如果要实现这种运算，就要把除法转化为乘法，假设 $b^{-1}$ 是 $b$ 关于 $c$ 的逆元。<br>$(a\div b)\%c=(a\%c\div b\%c)\%c$ 可以转化为 $(a\times b^{-1})\%c=(a\%c\times b^{-1}\%c)\%c$。</p>
+<p>如果要实现这种运算，就要把除法转化为乘法，假设 $b^{-1}$ 是 $b$ 关于 $c$ 的逆元。<br>$(a\div b)\%c$ 可以转化为 $(a\times b^{-1})\%c=(a\%c\times b^{-1}\%c)\%c$。</p>
 <h2 id="逆元求法"><a href="#逆元求法" class="headerlink" title="逆元求法"></a>逆元求法</h2><h3 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h3><p><strong>费马小定理：假设 $p$ 是一个质数，且 $gcd(a, p) = 1$，那么 $a^{p-1}≡1\ mod\ p$。</strong><br>我们也可以的得到一个费马小定理的特例：假设 $a$ 是一个整数，且 $gcd(a, p) = 1$，那么 $a^{p-1}≡1\ mod\ p$。</p>
 <p>根据费马小定理 $a^{p-1}≡1\ mod\ p$ ，可以发现 $a^{p-2}\times a≡1\ mod\ p$ 也成立。<br>是不是很像上面说到的逆元的形式：$Ax≡1\ mod\ p$， $x$ 是 $A$ 关于 $p$ 的逆元。<br>那根据费马小定理也可得知 $a^{p-2}$ 是 $a$ 关于 $p$ 的逆元。<br>所以求 $a$ 的逆元，就直接用快速幂求 $a^{p-2}$ 就可以了。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LL <span class="title">power</span><span class="params">(LL a, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	LL ans = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(x) &#123;</span><br><span class="line">		<span class="keyword">if</span>(x&amp;<span class="number">1</span>) ans = (ans * a) %mod;</span><br><span class="line">		a = (a * a) %mod;</span><br><span class="line">		x &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">inv</span><span class="params">(LL a)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> power(a, mod - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
