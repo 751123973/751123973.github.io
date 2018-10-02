@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="整数的K拆分整数K拆分示例在程序设计竞赛中，我们会经常遇到一类整数 $K$ 拆分的问题。  例如：求 $N$ 个非负整数之和为 $S$ 的方案数(每个数字都小于 $M$)。 对于这类问题，分为两种情况：①没有条件限制。 ②有条件限制。 没有条件限制当 $N = 2,S = 4$ 时，有$1.\quad0 + 4$$2.\quad1 + 3$$3.\quad2 + 2$$4.\quad3 + 1$$">
+  <meta name="description" content="整数的K拆分整数K拆分示例在程序设计竞赛中，我们会经常遇到一类整数 $K$ 拆分的问题。  例如：求 $N$ 个非负整数之和为 $S$ 的方案数(每个数字都小于 $M$)。 对于这类问题，分为两种情况：①没有条件限制。 ②有条件限制。  没有条件限制当 $N = 2,S = 4$ 时，有  $1.\quad0 + 4$$2.\quad1 + 3$$3.\quad2 + 2$$4.\quad3 +">
 <meta name="keywords" content="ACM,C&#x2F;C++,编程,算法,组合数学,容斥原理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ACM中的整数K拆分 (有条件限制 无条件限制 插板法 URAL-1036 HDU-6397)">
-<meta property="og:url" content="http://yoursite.com/2018/10/01/整数K拆分/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/10/01/40-整数K拆分/index.html">
 <meta property="og:site_name" content="Winsoul&#39;s Blog">
-<meta property="og:description" content="整数的K拆分整数K拆分示例在程序设计竞赛中，我们会经常遇到一类整数 $K$ 拆分的问题。  例如：求 $N$ 个非负整数之和为 $S$ 的方案数(每个数字都小于 $M$)。 对于这类问题，分为两种情况：①没有条件限制。 ②有条件限制。 没有条件限制当 $N = 2,S = 4$ 时，有$1.\quad0 + 4$$2.\quad1 + 3$$3.\quad2 + 2$$4.\quad3 + 1$$">
+<meta property="og:description" content="整数的K拆分整数K拆分示例在程序设计竞赛中，我们会经常遇到一类整数 $K$ 拆分的问题。  例如：求 $N$ 个非负整数之和为 $S$ 的方案数(每个数字都小于 $M$)。 对于这类问题，分为两种情况：①没有条件限制。 ②有条件限制。  没有条件限制当 $N = 2,S = 4$ 时，有  $1.\quad0 + 4$$2.\quad1 + 3$$3.\quad2 + 2$$4.\quad3 +">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-01T16:06:35.587Z">
+<meta property="og:updated_time" content="2018-10-02T07:47:44.199Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ACM中的整数K拆分 (有条件限制 无条件限制 插板法 URAL-1036 HDU-6397)">
-<meta name="twitter:description" content="整数的K拆分整数K拆分示例在程序设计竞赛中，我们会经常遇到一类整数 $K$ 拆分的问题。  例如：求 $N$ 个非负整数之和为 $S$ 的方案数(每个数字都小于 $M$)。 对于这类问题，分为两种情况：①没有条件限制。 ②有条件限制。 没有条件限制当 $N = 2,S = 4$ 时，有$1.\quad0 + 4$$2.\quad1 + 3$$3.\quad2 + 2$$4.\quad3 + 1$$">
+<meta name="twitter:description" content="整数的K拆分整数K拆分示例在程序设计竞赛中，我们会经常遇到一类整数 $K$ 拆分的问题。  例如：求 $N$ 个非负整数之和为 $S$ 的方案数(每个数字都小于 $M$)。 对于这类问题，分为两种情况：①没有条件限制。 ②有条件限制。  没有条件限制当 $N = 2,S = 4$ 时，有  $1.\quad0 + 4$$2.\quad1 + 3$$3.\quad2 + 2$$4.\quad3 +">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/01/整数K拆分/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/01/40-整数K拆分/"/>
 
 
 
@@ -340,7 +340,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/01/整数K拆分/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/01/40-整数K拆分/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Winsoul">
@@ -399,7 +399,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-02 00:06:35" itemprop="dateModified" datetime="2018-10-02T00:06:35+08:00">2018-10-02</time>
+                <time title="修改时间：2018-10-02 15:47:44" itemprop="dateModified" datetime="2018-10-02T15:47:44+08:00">2018-10-02</time>
               
             
           </span>
@@ -436,7 +436,10 @@
 <blockquote>
 <p>例如：求 $N$ 个非负整数之和为 $S$ 的方案数(<del>每个数字都小于 $M$</del>)。</p>
 <p>对于这类问题，分为两种情况：①没有条件限制。 ②有条件限制。</p>
-<h4 id="没有条件限制"><a href="#没有条件限制" class="headerlink" title="没有条件限制"></a>没有条件限制</h4><p>当 $N = 2,S = 4$ 时，有<br>$1.\quad0 + 4$<br>$2.\quad1 + 3$<br>$3.\quad2 + 2$<br>$4.\quad3 + 1$<br>$5.\quad4 + 0$</p>
+</blockquote>
+<h4 id="没有条件限制"><a href="#没有条件限制" class="headerlink" title="没有条件限制"></a>没有条件限制</h4><p>当 $N = 2,S = 4$ 时，有</p>
+<blockquote>
+<p>$1.\quad0 + 4$<br>$2.\quad1 + 3$<br>$3.\quad2 + 2$<br>$4.\quad3 + 1$<br>$5.\quad4 + 0$</p>
 </blockquote>
 <p>对于没有条件限制的问题，直接使用插板法求解即可。<br>例如要用 $n$ 个数字之和等于 $s$。不妨假设要把 $s$ 个球，用 $n -1$ 块板分为 $n$ 组(可为空集)。这样子，用板隔开的球数，就是划分出的 $n$ 个数。<br>例如 $n = 4，s = 10$ 时，我们可以找到一种情况为 $1 + 5 + 0 + 4$，即：</p>
 <script type="math/tex; mode=display">o\ |\ o\ o\ o\ o\ o\ |\ |\ o\ o\ o\ o</script><p>因此我们可以看成在 $n - 1 + s$ 个空位上，选择 $n - 1$ 个位置来插入板，将数字隔开。即：<script type="math/tex">C_{n-1+s}^{n-1}</script></p>
