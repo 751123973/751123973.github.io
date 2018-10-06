@@ -117,7 +117,7 @@
 <meta property="og:description" content="HDU - 4725Time Limit: 2000/1000 MS (Java/Others) &amp;nbsp; &amp;nbsp; &amp;nbsp; Memory Limit: 32768/32768 K (Java/Others) 题目描述 This is a very easy problem, your task is just calculate el camino mas corto en un">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdn.net/20181006194315309?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODYxOTE2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2018-10-06T11:49:07.598Z">
+<meta property="og:updated_time" content="2018-10-06T11:53:58.078Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【HDU - 4725】The Shortest Path in Nya Graph (最短路 虚拟节点)">
 <meta name="twitter:description" content="HDU - 4725Time Limit: 2000/1000 MS (Java/Others) &amp;nbsp; &amp;nbsp; &amp;nbsp; Memory Limit: 32768/32768 K (Java/Others) 题目描述 This is a very easy problem, your task is just calculate el camino mas corto en un">
@@ -384,7 +384,7 @@
                 
               
 
-              <time title="创建时间：2018-10-06 19:47:49 / 修改时间：19:49:07" itemprop="dateCreated datePublished" datetime="2018-10-06T19:47:49+08:00">2018-10-06</time>
+              <time title="创建时间：2018-10-06 19:47:49 / 修改时间：19:53:58" itemprop="dateCreated datePublished" datetime="2018-10-06T19:47:49+08:00">2018-10-06</time>
             
 
             
@@ -426,6 +426,7 @@
 <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
 <p>This is a very easy problem, your task is just calculate el camino mas corto en un grafico, and just solo hay que cambiar un poco el algoritmo. If you do not understand a word of this paragraph, just move on.<br>The Nya graph is an undirected graph with “layers”. Each node in the graph belongs to a layer, there are N nodes in total.<br>You can move from any node in layer x to any node in layer x + 1, with cost C, since the roads are bi-directional, moving from layer x + 1 to layer x is also allowed with the same cost.<br>Besides, there are M extra edges, each connecting a pair of node u and v, with cost w.<br>Help us calculate the shortest path from node 1 to node N.</p>
 </blockquote>
+<a id="more"></a>
 <h3 id="input"><a href="#input" class="headerlink" title="input"></a>input</h3><blockquote>
 <p>The first line has a number T (T &lt;= 20) , indicating the number of test cases.<br>For each test case, first line has three numbers N, M (0 &lt;= N, M &lt;= 105) and C(1 &lt;= C &lt;= 103), which is the number of nodes, the number of extra edges and cost of moving between adjacent layers.<br>The second line has N numbers li (1 &lt;= li &lt;= N), which is the layer of ith node belong to.<br>Then come N lines each with 3 numbers, u, v (1 &lt;= u, v &lt; =N, u &lt;&gt; v) and w (1 &lt;= w &lt;= 104), which means there is an extra edge, connecting a pair of node u and v, with cost w.</p>
 </blockquote>
