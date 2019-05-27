@@ -108,23 +108,25 @@
 
 
 
-  <meta name="description" content="要有梦想，即使遥远。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Winsoul&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2017/11/index.html">
+  <meta name="description" content="莫比乌斯反演(一)前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;终于要学莫比乌斯反演啦，封存了半年数论，为了一个星期后的南昌，不得不扩充更广的知识面。遗憾的是，打完南昌可能就要退役了。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;虽然打完南昌一站可能退役了，但是也不能放弃算法的学习。(2019-05-26 留) 整除分块在莫比乌斯反演一类问题中，结果经常会出现形如 $\sum_{i = 1">
+<meta name="keywords" content="ACM,数论,莫比乌斯反演">
+<meta property="og:type" content="article">
+<meta property="og:title" content="莫比乌斯反演(一)：整除分块">
+<meta property="og:url" content="http://yoursite.com/2019/05/27/48-莫比乌斯反演(一)整除分块/index.html">
 <meta property="og:site_name" content="Winsoul&#39;s Blog">
-<meta property="og:description" content="要有梦想，即使遥远。">
+<meta property="og:description" content="莫比乌斯反演(一)前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;终于要学莫比乌斯反演啦，封存了半年数论，为了一个星期后的南昌，不得不扩充更广的知识面。遗憾的是，打完南昌可能就要退役了。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;虽然打完南昌一站可能退役了，但是也不能放弃算法的学习。(2019-05-26 留) 整除分块在莫比乌斯反演一类问题中，结果经常会出现形如 $\sum_{i = 1">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-27T12:30:03.123Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Winsoul&#39;s Blog">
-<meta name="twitter:description" content="要有梦想，即使遥远。">
+<meta name="twitter:title" content="莫比乌斯反演(一)：整除分块">
+<meta name="twitter:description" content="莫比乌斯反演(一)前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;终于要学莫比乌斯反演啦，封存了半年数论，为了一个星期后的南昌，不得不扩充更广的知识面。遗憾的是，打完南昌可能就要退役了。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;虽然打完南昌一站可能退役了，但是也不能放弃算法的学习。(2019-05-26 留) 整除分块在莫比乌斯反演一类问题中，结果经常会出现形如 $\sum_{i = 1">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2017/11/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/05/27/48-莫比乌斯反演(一)整除分块/"/>
 
 
 
@@ -134,7 +136,7 @@
   };
 </script>
 
-  <title>归档 | Winsoul's Blog</title>
+  <title>莫比乌斯反演(一)：整除分块 | Winsoul's Blog</title>
   
 
 
@@ -181,7 +183,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -246,7 +248,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />总览</a>
   </li>
@@ -318,438 +320,218 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/48-莫比乌斯反演(一)整除分块/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Winsoul">
+      <meta itemprop="description" content="要有梦想，即使遥远。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Winsoul's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h1 class="post-title" itemprop="name headline">莫比乌斯反演(一)：整除分块
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-27 20:29:37 / 修改时间：20:30:03" itemprop="dateCreated datePublished" datetime="2019-05-27T20:29:37+08:00">2019-05-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
           
-        不错! 目前共计 55 篇日志。 继续努力。
-      </span>
-      
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
-        
-        
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/27/48-莫比乌斯反演(一)整除分块/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/05/27/48-莫比乌斯反演(一)整除分块/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/30/8-Mammoth-s-Genome-Decoding/" itemprop="url">
-              
-                <span itemprop="name">【每日一题(8)】Mammoth's Genome Decoding CodeForces - 747B</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-30T17:29:11+08:00"
-              content="2017-11-30" >
-          11-30
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/29/7-8qiushengfu/" itemprop="url">
-              
-                <span itemprop="name">【每日一题(7)】8球胜负(eight) UESTC - 24 (电子科技大学第六届ACM程序设计大赛)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-29T13:12:30+08:00"
-              content="2017-11-29" >
-          11-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/28/6-Div-64/" itemprop="url">
-              
-                <span itemprop="name">【每日一题(6)】Div. 64 CodeForces - 887A</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-28T16:54:58+08:00"
-              content="2017-11-28" >
-          11-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/27/5-kai-sa-mi-ma/" itemprop="url">
-              
-                <span itemprop="name">【每日一题(5)】密码(凯撒密码) FZU - 1489 (福州大学第四届程序设计竞赛题)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-27T13:38:31+08:00"
-              content="2017-11-27" >
-          11-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h2 id="莫比乌斯反演-一"><a href="#莫比乌斯反演-一" class="headerlink" title="莫比乌斯反演(一)"></a>莫比乌斯反演(一)</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;终于要学莫比乌斯反演啦，封存了半年数论，为了一个星期后的南昌，不得不扩充更广的知识面。遗憾的是，打完南昌可能就要退役了。<br>&nbsp;&nbsp;&nbsp;&nbsp;虽然打完南昌一站可能退役了，但是也不能放弃算法的学习。<br>(2019-05-26 留)</p>
+<h3 id="整除分块"><a href="#整除分块" class="headerlink" title="整除分块"></a>整除分块</h3><p>在莫比乌斯反演一类问题中，结果经常会出现形如 $\sum_{i = 1}^{n}{\lfloor\frac{n}{i}\rfloor}$。<br>如果 $n$ 的范围巨大，暴力 $O(n)$ 的方法可能会超时。而整除分块是 $O(\sqrt{n})$ 的方法。</p>
+<p><br></p>
+<p>现在我们要解决一个这样的问题：</p>
+<script type="math/tex; mode=display">\sum_{i = 1}^{n}{\lfloor\frac{n}{i}\rfloor}\quad(n \le 10^{12})</script><h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p>参考博客:<a href="https://www.cnblogs.com/0xfffe/p/9648943.html" target="_blank" rel="noopener">点击此链接看证明</a><br>首先我们可以想到的是 $\sum_{i = 1}^{n}{\lfloor\frac{n}{i}\rfloor}$ 里面，有很多项是重复的。例如在 $n = 10$ 的情况下，$1$ 至 $10$ 项分别是 $10，5，3，2，2，1，1，1，1，1$ 。而整除分块的任务就是 $\sum_{i = 1}^{10}{\lfloor\frac{10}{i}\rfloor} = 10\times1+5\times1+3\times1+2\times2+1\times5$。</p>
+<p><br></p>
+<p>$\sum_{i = 1}^{n}{\lfloor\frac{n}{i}\rfloor}$ 的性质：</p>
+<ol>
+<li>不同的项最多只有 $2\sqrt{n}$ 项。</li>
+<li>与 $\lfloor\frac{n}{i}\rfloor$ 相等的最大的 $i’$ 为  $\lfloor\frac{n}{\lfloor\frac{n}{i}\rfloor}\rfloor$。</li>
+</ol>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">1</span>, r; l &lt;= n; l = r + <span class="number">1</span>) &#123;</span><br><span class="line">    r = n / (n / l);</span><br><span class="line">    ans += (r - l + <span class="number">1</span>) * (n / l);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/27/NoteAbout_bitwise operation/" itemprop="url">
-              
-                <span itemprop="name">关于位运算的笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-27T00:33:18+08:00"
-              content="2017-11-27" >
-          11-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/26/4-wo-xiang-zhao-ge-nv-peng-you/" itemprop="url">
-              
-                <span itemprop="name">【每日一题(4)】我想找个女朋友 HRBUST - 1978</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-26T16:30:25+08:00"
-              content="2017-11-26" >
-          11-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/25/3-Kuaile-de-tiaoyueze/" itemprop="url">
-              
-                <span itemprop="name">【每日一题(3)】快乐的跳跃者 UESTC - 508</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-25T12:21:16+08:00"
-              content="2017-11-25" >
-          11-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/24/2-Fankongxunlianying/" itemprop="url">
-              
-                <span itemprop="name">【每日一题(2)】反恐训练营 HDU - 1243</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-24T15:53:24+08:00"
-              content="2017-11-24" >
-          11-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/23/1-open-closePersonHDU1234/" itemprop="url">
-              
-                <span itemprop="name">【每日一题(1)】开门人和关门人 HDU - 1234 (05年浙大计算机研究生考试)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-23T13:39:04+08:00"
-              content="2017-11-23" >
-          11-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/20/Hello-World/" itemprop="url">
-              
-                <span itemprop="name">Hello World!</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-20T00:34:43+08:00"
-              content="2017-11-20" >
-          11-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ACM/" rel="tag"># ACM</a>
+          
+            <a href="/tags/数论/" rel="tag"># 数论</a>
+          
+            <a href="/tags/莫比乌斯反演/" rel="tag"># 莫比乌斯反演</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/27/47-xi'an2019ICPC/" rel="next" title="2019年ICPC-ACM全国邀请赛(西安) 总结">
+                <i class="fa fa-chevron-left"></i> 2019年ICPC-ACM全国邀请赛(西安) 总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -770,8 +552,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -901,6 +692,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#莫比乌斯反演-一"><span class="nav-number">1.</span> <span class="nav-text">莫比乌斯反演(一)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整除分块"><span class="nav-number">1.2.</span> <span class="nav-text">整除分块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释"><span class="nav-number">1.3.</span> <span class="nav-text">解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.4.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1060,6 +867,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
 
   
 
@@ -1074,6 +885,23 @@
     <script id="dsq-count-scr" src="https://Winsoul.disqus.com/count.js" async></script>
   
 
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2019/05/27/48-莫比乌斯反演(一)整除分块/';
+        this.page.identifier = '2019/05/27/48-莫比乌斯反演(一)整除分块/';
+        this.page.title = '莫比乌斯反演(一)：整除分块';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://Winsoul.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
   
 
 
@@ -1425,6 +1253,30 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
