@@ -108,19 +108,19 @@
 
 
 
-  <meta name="description" content="123456789101112131415161718192021def plotBestFit(weights):    dataMat, labelMat = loadDataSet()    dataArr = np.array(dataMat)    n = np.shape(dataArr)[0]    xcord1 = []; ycord1 = []    xcord2 = []; y">
+  <meta name="description" content="123456789101112def gradAscent(dataMatIn, classLabels):    dataMatrix = np.mat(dataMatIn)    labelMat = np.mat(classLabels).transpose()    m, n = np.shape(dataMatrix)    alpha = 0.001    maxCycles = 10">
 <meta name="keywords" content="机器学习,学习笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《机器学习实战》Logistic回归学习笔记(二) 梯度上升优化算法">
 <meta property="og:url" content="http://yoursite.com/2019/07/22/55-LogisticRegression(2)Gradient/index.html">
 <meta property="og:site_name" content="Winsoul&#39;s Blog">
-<meta property="og:description" content="123456789101112131415161718192021def plotBestFit(weights):    dataMat, labelMat = loadDataSet()    dataArr = np.array(dataMat)    n = np.shape(dataArr)[0]    xcord1 = []; ycord1 = []    xcord2 = []; y">
+<meta property="og:description" content="123456789101112def gradAscent(dataMatIn, classLabels):    dataMatrix = np.mat(dataMatIn)    labelMat = np.mat(classLabels).transpose()    m, n = np.shape(dataMatrix)    alpha = 0.001    maxCycles = 10">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190722022330607.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODYxOTE2,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-07-21T18:33:21.908Z">
+<meta property="og:updated_time" content="2019-07-21T18:33:39.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《机器学习实战》Logistic回归学习笔记(二) 梯度上升优化算法">
-<meta name="twitter:description" content="123456789101112131415161718192021def plotBestFit(weights):    dataMat, labelMat = loadDataSet()    dataArr = np.array(dataMat)    n = np.shape(dataArr)[0]    xcord1 = []; ycord1 = []    xcord2 = []; y">
+<meta name="twitter:description" content="123456789101112def gradAscent(dataMatIn, classLabels):    dataMatrix = np.mat(dataMatIn)    labelMat = np.mat(classLabels).transpose()    m, n = np.shape(dataMatrix)    alpha = 0.001    maxCycles = 10">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190722022330607.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODYxOTE2,size_16,color_FFFFFF,t_70">
 
 
@@ -384,7 +384,7 @@
                 
               
 
-              <time title="创建时间：2019-07-22 02:22:23 / 修改时间：02:33:21" itemprop="dateCreated datePublished" datetime="2019-07-22T02:22:23+08:00">2019-07-22</time>
+              <time title="创建时间：2019-07-22 02:22:23 / 修改时间：02:33:39" itemprop="dateCreated datePublished" datetime="2019-07-22T02:22:23+08:00">2019-07-22</time>
             
 
             
@@ -442,7 +442,34 @@
       
 
       
-        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plotBestFit</span><span class="params">(weights)</span>:</span></span><br><span class="line">    dataMat, labelMat = loadDataSet()</span><br><span class="line">    dataArr = np.array(dataMat)</span><br><span class="line">    n = np.shape(dataArr)[<span class="number">0</span>]</span><br><span class="line">    xcord1 = []; ycord1 = []</span><br><span class="line">    xcord2 = []; ycord2 = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        <span class="keyword">if</span> int(labelMat[i] == <span class="number">1</span>):</span><br><span class="line">            xcord1.append(dataArr[i, <span class="number">1</span>])</span><br><span class="line">            ycord1.append(dataArr[i, <span class="number">2</span>])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            xcord2.append(dataArr[i, <span class="number">1</span>])</span><br><span class="line">            ycord2.append(dataArr[i, <span class="number">2</span>])</span><br><span class="line">    fig = plt.figure()</span><br><span class="line">    ax = fig.add_subplot(<span class="number">111</span>)</span><br><span class="line">    ax.scatter(xcord1, ycord1, s = <span class="number">30</span>, c = <span class="string">'red'</span>, marker = <span class="string">'s'</span>)</span><br><span class="line">    ax.scatter(xcord2, ycord2, s = <span class="number">30</span>, c = <span class="string">'green'</span>)</span><br><span class="line">    x = np.arange(<span class="number">-5.0</span>, <span class="number">5.0</span>, <span class="number">0.1</span>)</span><br><span class="line">    y = (-weights[<span class="number">0</span>] - weights[<span class="number">1</span>] * x)/weights[<span class="number">2</span>]</span><br><span class="line">    ax.plot(x, y)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gradAscent</span><span class="params">(dataMatIn, classLabels)</span>:</span></span><br><span class="line">    dataMatrix = np.mat(dataMatIn)</span><br><span class="line">    labelMat = np.mat(classLabels).transpose()</span><br><span class="line">    m, n = np.shape(dataMatrix)</span><br><span class="line">    alpha = <span class="number">0.001</span></span><br><span class="line">    maxCycles = <span class="number">100</span></span><br><span class="line">    weights = np.ones((n, <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(maxCycles):</span><br><span class="line">        h = sigmoid(dataMatrix * weights)</span><br><span class="line">        error = labelMat - h</span><br><span class="line">        weights = weights + alpha * dataMatrix.transpose() * error</span><br><span class="line">    <span class="keyword">return</span> weights</span><br></pre></td></tr></table></figure>
+<h4 id="梯度上升-gradient-ascent"><a href="#梯度上升-gradient-ascent" class="headerlink" title="梯度上升(gradient ascent)"></a>梯度上升(gradient ascent)</h4><p><br></p>
+<h5 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h5><p>梯度是一个向量，表示某一函数在该点处的方向导数沿着该方向取得最大值，即函数在该方向变化最快(梯度的方向)，变化率最大(梯度的模)。</p>
+<p>我们将梯度记为 $\nabla$，则 $f(x,y)$ 的梯度为 $\nabla f(x,y) = \begin{bmatrix}\partial f(x,y)\over \partial x \\ \partial f(x,y) \over \partial y \end{bmatrix}$ 。</p>
+<p>表示我们现在需要沿着 $x$ 轴移动 $\partial f(x,y)\over \partial x$，沿着 $y$ 轴移动 $\partial f(x,y)\over \partial y$ 。($f(x,y)$ 要在这些点上有意义且可微)</p>
+<p>但是我们上面的式子中，只给出了梯度的方向和变化率，并没有给出步长，因此我们还要定义一个步长 $\alpha$，$\alpha$ 也会被称之为学习率(learning rate)。</p>
+<p><br></p>
+<h5 id="最优化权重"><a href="#最优化权重" class="headerlink" title="最优化权重"></a>最优化权重</h5><p>在本节中，我们讨论的分类为二分类，因此类别非0即1。<br>我们设 $x$ 为输入的特征向量，$\xi$ 为类别。</p>
+<p>我们定义 $P(\xi = 1|x) = \sigma(z)$</p>
+<p>显然 $P(\xi = 0|x) = 1 - P(\xi = 1|x) = 1 - {\sigma(z)} = \sigma(-z)$</p>
+<p>因此，对于第 $i$ 个样本，有</p>
+<script type="math/tex; mode=display">P(\xi = \xi_{i}|x_i) = P(\xi = 0|x_i)^{1-\xi_i}P(\xi = 1|x_i)^{\xi_i}=(1-\sigma(z_i))^{1-\xi_i}\sigma(z_i)^{\xi_i}</script><p>由于各个样本之间是相互独立的，联合概率为各个样本的乘积。因此我们可以得到关于权重向量 $\omega$ 的最大似然函数</p>
+<script type="math/tex; mode=display">\mathscr{L}(\omega) = \prod^n_{i = 1}(1-\sigma(z))^{1-\xi_i}(\sigma(z))^{\xi_i} \quad\text{($n$ 为样本总数)}</script><p>两边同时取对数，得</p>
+<script type="math/tex; mode=display">\begin{align} ln\  \mathscr{L}(\omega) & = \sum_{i=1}^{n}ln((1-\sigma(z))^{1-\xi_i}\sigma(z)^{\xi_i})\\
+& = \sum_{i=1}^{n}((1-\xi_i)ln(1-\sigma(z)) + \xi_iln\ \sigma(z))\\
+& = \sum_{i=1}^{n}((1-\xi_i)ln\ \sigma(-z_i) + \xi_iln\ \sigma(z_i))\\
+\end{align}</script><p>当 $\mathscr{L}(\omega)$ 最大时，此时的 $\omega$ 为回归系数最优解。</p>
+<p>显然，若存在一个 $\omega$ 使得 $\mathscr{L}(\omega)$ 取得最大值，同样也可使 $ln\ \mathscr{L}(\omega)$ 取最大值。<br>因此，求解 $ln\ \mathscr{L}(\omega)$ 的最大值与求解 $\mathscr{L}(\omega)$ 的最大值是等效的。</p>
+<p>现在的问题转换为求 $ln\ \mathscr{L}(\omega)$ 的最大值。</p>
+<p>我们使用梯度上升求 $\omega$ 的最大值，即 $\omega := \omega +\alpha \nabla ln\ \mathscr{L}(\omega)$</p>
+<p>对于 $\omega$ 的第 $j$ 个分量 $\omega_j$， 有 $\omega_j := \omega_j + \alpha {\partial ln\ \mathscr{L}(\omega) \over {\partial \omega_j}}$</p>
+<script type="math/tex; mode=display">\begin{align}\\
+{\partial ln\ \mathscr{L}(\omega) \over {\partial \omega_j}} & = \sum_{i=1}^n (-(1-\xi_i)(1 - \sigma(-z_i)) +\xi_i(1-\sigma(z_i))){\partial z_i \over \partial \omega_j}\\
+& = \sum_{i=1}^n ((\xi_i - 1)\sigma(z_i) +\xi_i(1-\sigma(z_i)))x_j\\
+& = \sum_{i=1}^n (\xi_i - \sigma(z_i))x_j\\
+\end{align}</script><p>即 <script type="math/tex">{\partial ln\ \mathscr{L}(\omega) \over {\partial \omega_j}} = x^T(\xi-\sigma(z))</script><br>上述代码中，我们令 $error = \xi - \sigma(z)$</p>
+<p>最后我们可以得到梯度上升的式子为 <script type="math/tex">\omega := \omega + \alpha x^T(\xi-\sigma(z))</script></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plotBestFit</span><span class="params">(weights)</span>:</span></span><br><span class="line">    dataMat, labelMat = loadDataSet()</span><br><span class="line">    dataArr = np.array(dataMat)</span><br><span class="line">    n = np.shape(dataArr)[<span class="number">0</span>]</span><br><span class="line">    xcord1 = []; ycord1 = []</span><br><span class="line">    xcord2 = []; ycord2 = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        <span class="keyword">if</span> int(labelMat[i] == <span class="number">1</span>):</span><br><span class="line">            xcord1.append(dataArr[i, <span class="number">1</span>])</span><br><span class="line">            ycord1.append(dataArr[i, <span class="number">2</span>])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            xcord2.append(dataArr[i, <span class="number">1</span>])</span><br><span class="line">            ycord2.append(dataArr[i, <span class="number">2</span>])</span><br><span class="line">    fig = plt.figure()</span><br><span class="line">    ax = fig.add_subplot(<span class="number">111</span>)</span><br><span class="line">    ax.scatter(xcord1, ycord1, s = <span class="number">30</span>, c = <span class="string">'red'</span>, marker = <span class="string">'s'</span>)</span><br><span class="line">    ax.scatter(xcord2, ycord2, s = <span class="number">30</span>, c = <span class="string">'green'</span>)</span><br><span class="line">    x = np.arange(<span class="number">-5.0</span>, <span class="number">5.0</span>, <span class="number">0.1</span>)</span><br><span class="line">    y = (-weights[<span class="number">0</span>] - weights[<span class="number">1</span>] * x)/weights[<span class="number">2</span>]</span><br><span class="line">    ax.plot(x, y)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dataArr, labelMat = loadDataSet()</span><br><span class="line">weights = gradAscent(dataArr, labelMat)</span><br><span class="line">print(weights)</span><br><span class="line">plotBestFit(weights.getA())</span><br></pre></td></tr></table></figure>
 <pre><code>[[ 1.56323942]
  [ 0.22244791]
@@ -546,8 +573,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -681,6 +717,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#梯度上升-gradient-ascent"><span class="nav-number">1.</span> <span class="nav-text">梯度上升(gradient ascent)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#梯度"><span class="nav-number">1.1.</span> <span class="nav-text">梯度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#最优化权重"><span class="nav-number">1.2.</span> <span class="nav-text">最优化权重</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
