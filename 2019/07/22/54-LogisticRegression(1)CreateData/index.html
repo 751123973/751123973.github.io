@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="CreateData.py1234import randomimport numpy as np%matplotlib inlineimport matplotlib.pyplot as plt 12345678910111213141516171819202122with open(&quot;testdata.txt&quot;, &apos;w&apos;) as fw:    total = 50    x = []    y">
+<meta name="keywords" content="机器学习,学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《机器学习实战》Logistic回归学习笔记(一) 创建数据">
+<meta property="og:url" content="http://yoursite.com/2019/07/22/54-LogisticRegression(1)CreateData/index.html">
+<meta property="og:site_name" content="Winsoul&#39;s Blog">
+<meta property="og:description" content="CreateData.py1234import randomimport numpy as np%matplotlib inlineimport matplotlib.pyplot as plt 12345678910111213141516171819202122with open(&quot;testdata.txt&quot;, &apos;w&apos;) as fw:    total = 50    x = []    y">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190722021204789.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODYxOTE2,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-07-21T18:16:10.936Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《机器学习实战》Logistic回归学习笔记(一) 创建数据">
+<meta name="twitter:description" content="CreateData.py1234import randomimport numpy as np%matplotlib inlineimport matplotlib.pyplot as plt 12345678910111213141516171819202122with open(&quot;testdata.txt&quot;, &apos;w&apos;) as fw:    total = 50    x = []    y">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190722021204789.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODYxOTE2,size_16,color_FFFFFF,t_70">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/22/54-LogisticRegression(1)CreateData/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《机器学习实战》Logistic回归学习笔记(一) 创建数据 | Winsoul's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Winsoul's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">要有梦想，即使遥远。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />总览</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/22/54-LogisticRegression(1)CreateData/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Winsoul">
+      <meta itemprop="description" content="要有梦想，即使遥远。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Winsoul's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《机器学习实战》Logistic回归学习笔记(一) 创建数据
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-22 02:15:27 / 修改时间：02:16:10" itemprop="dateCreated datePublished" datetime="2019-07-22T02:15:27+08:00">2019-07-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/07/22/54-LogisticRegression(1)CreateData/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/07/22/54-LogisticRegression(1)CreateData/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="CreateData-py"><a href="#CreateData-py" class="headerlink" title="CreateData.py"></a>CreateData.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">"testdata.txt"</span>, <span class="string">'w'</span>) <span class="keyword">as</span> fw:</span><br><span class="line">    total = <span class="number">50</span></span><br><span class="line">    x = []</span><br><span class="line">    y = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, total):</span><br><span class="line">        a = random.uniform(<span class="number">-4</span>, <span class="number">4</span>)</span><br><span class="line">        b = random.uniform(<span class="number">5</span>, <span class="number">20</span>) + a</span><br><span class="line">        x.append(a)</span><br><span class="line">        y.append(b)</span><br><span class="line">        fw.writelines(str(a) + <span class="string">' '</span> + str(b) + <span class="string">' '</span> + <span class="string">'0'</span> + <span class="string">'\n'</span>)</span><br><span class="line">    plt.scatter(x, y)</span><br><span class="line"></span><br><span class="line">    total = <span class="number">50</span></span><br><span class="line">    x = []</span><br><span class="line">    y = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, total):</span><br><span class="line">        a = random.uniform(<span class="number">-4</span>, <span class="number">4</span>)</span><br><span class="line">        b = random.uniform(<span class="number">-10</span>, <span class="number">10</span>) + a</span><br><span class="line">        x.append(a)</span><br><span class="line">        y.append(b)</span><br><span class="line">        fw.writelines(str(a) + <span class="string">' '</span> + str(b) + <span class="string">' '</span> + <span class="string">'1'</span> + <span class="string">'\n'</span>)</span><br><span class="line">    plt.scatter(x, y)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20190722021204789.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODYxOTE2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="testdata-txt"><a href="#testdata-txt" class="headerlink" title="testdata.txt"></a>testdata.txt</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.7239179761063106</span> <span class="number">11.621616738817881</span> <span class="number">0</span></span><br><span class="line"><span class="number">1.3644791565183692</span> <span class="number">12.850056593500511</span> <span class="number">0</span></span><br><span class="line"><span class="number">-2.8241788227167</span> <span class="number">15.295105047052662</span> <span class="number">0</span></span><br><span class="line"><span class="number">-0.12096761924270982</span> <span class="number">15.874786442693807</span> <span class="number">0</span></span><br><span class="line"><span class="number">-1.1907304106668226</span> <span class="number">4.8230472771865545</span> <span class="number">0</span></span><br><span class="line"><span class="number">3.88922203167406</span> <span class="number">10.481598295835838</span> <span class="number">0</span></span><br><span class="line"><span class="number">-1.5514013259782748</span> <span class="number">12.546587342124699</span> <span class="number">0</span></span><br><span class="line"><span class="number">-3.9080652903199526</span> <span class="number">14.863720814935565</span> <span class="number">0</span></span><br><span class="line"><span class="number">2.8905823503919246</span> <span class="number">14.154052215869715</span> <span class="number">0</span></span><br><span class="line"><span class="number">-0.3713333039674973</span> <span class="number">5.85627941491275</span> <span class="number">0</span></span><br><span class="line"><span class="number">-3.650966596512319</span> <span class="number">12.358793724996886</span> <span class="number">0</span></span><br><span class="line"><span class="number">1.8524828630704393</span> <span class="number">16.85384682123108</span> <span class="number">0</span></span><br><span class="line"><span class="number">0.7815276199297516</span> <span class="number">19.928011423190423</span> <span class="number">0</span></span><br><span class="line"><span class="number">1.1868119863064042</span> <span class="number">14.572097717559839</span> <span class="number">0</span></span><br><span class="line"><span class="number">0.39290949856611235</span> <span class="number">9.439892257762391</span> <span class="number">0</span></span><br><span class="line"><span class="number">-0.4380052483257888</span> <span class="number">7.180656833515273</span> <span class="number">0</span></span><br><span class="line"><span class="number">-1.4205733552933255</span> <span class="number">15.330674281396096</span> <span class="number">0</span></span><br><span class="line"><span class="number">-2.6263493127221835</span> <span class="number">11.678565890789418</span> <span class="number">0</span></span><br><span class="line"><span class="number">-0.7507175361604244</span> <span class="number">18.156125737453877</span> <span class="number">0</span></span><br><span class="line"><span class="number">-2.892820682558207</span> <span class="number">8.79065046439107</span> <span class="number">0</span></span><br><span class="line"><span class="number">3.5207117417590963</span> <span class="number">15.21773422345941</span> <span class="number">0</span></span><br><span class="line"><span class="number">-3.780217519644192</span> <span class="number">7.7737004746994804</span> <span class="number">0</span></span><br><span class="line"><span class="number">1.4395838379857864</span> <span class="number">6.897627954129135</span> <span class="number">0</span></span><br><span class="line"><span class="number">-3.485964608262197</span> <span class="number">10.916386904249354</span> <span class="number">0</span></span><br><span class="line"><span class="number">3.3246385675110313</span> <span class="number">14.333707156324603</span> <span class="number">0</span></span><br><span class="line"><span class="number">1.1676140508544064</span> <span class="number">6.442484482045056</span> <span class="number">0</span></span><br><span class="line"><span class="number">-3.8481216395835807</span> <span class="number">15.75711938722526</span> <span class="number">0</span></span><br><span class="line"><span class="number">1.1849484896656897</span> <span class="number">11.601755270469662</span> <span class="number">0</span></span><br><span class="line"><span class="number">3.6312326582381784</span> <span class="number">18.119814114264802</span> <span class="number">0</span></span><br><span class="line"><span class="number">-2.009439020302379</span> <span class="number">11.545171821789669</span> <span class="number">0</span></span><br><span class="line"><span class="number">0.27626114429143467</span> <span class="number">11.666729594397342</span> <span class="number">0</span></span><br><span class="line"><span class="number">-3.985993714143868</span> <span class="number">13.574048396767614</span> <span class="number">0</span></span><br><span class="line"><span class="number">0.36319738221735776</span> <span class="number">10.126393870333015</span> <span class="number">0</span></span><br><span class="line"><span class="number">2.364371813891035</span> <span class="number">18.669605141733847</span> <span class="number">0</span></span><br><span class="line"><span class="number">-1.8881430957099639</span> <span class="number">17.845978673009068</span> <span class="number">0</span></span><br><span class="line"><span class="number">2.956793613716248</span> <span class="number">13.952227220980376</span> <span class="number">0</span></span><br><span class="line"><span class="number">-3.4684680188305084</span> <span class="number">10.254267125743652</span> <span class="number">0</span></span><br><span class="line"><span class="number">0.7767252796982715</span> <span class="number">10.796194925340519</span> <span class="number">0</span></span><br><span class="line"><span class="number">0.09665049611839116</span> <span class="number">5.181278906651645</span> <span class="number">0</span></span><br><span class="line"><span class="number">1.490792701114417</span> <span class="number">8.344855481214633</span> <span class="number">0</span></span><br><span class="line"><span class="number">-0.7818084864690391</span> <span class="number">8.173744935577602</span> <span class="number">0</span></span><br><span class="line"><span class="number">2.8979866043165563</span> <span class="number">20.959281355363185</span> <span class="number">0</span></span><br><span class="line"><span class="number">1.9764448594536077</span> <span class="number">12.519030127592202</span> <span class="number">0</span></span><br><span class="line"><span class="number">-2.031361540068379</span> <span class="number">7.336767194880081</span> <span class="number">0</span></span><br><span class="line"><span class="number">1.7946468492755514</span> <span class="number">15.551085708759762</span> <span class="number">0</span></span><br><span class="line"><span class="number">-0.5655463872715139</span> <span class="number">16.245272157091527</span> <span class="number">0</span></span><br><span class="line"><span class="number">-1.4181211304278145</span> <span class="number">15.566333360209892</span> <span class="number">0</span></span><br><span class="line"><span class="number">-2.276375126421028</span> <span class="number">15.8032454074095</span> <span class="number">0</span></span><br><span class="line"><span class="number">-2.9496483202378565</span> <span class="number">16.606673645732684</span> <span class="number">0</span></span><br><span class="line"><span class="number">1.1558056913468784</span> <span class="number">-0.07470307765165263</span> <span class="number">1</span></span><br><span class="line"><span class="number">-0.5128180350116036</span> <span class="number">-1.864164003041763</span> <span class="number">1</span></span><br><span class="line"><span class="number">1.7085205423884302</span> <span class="number">-7.992611148265982</span> <span class="number">1</span></span><br><span class="line"><span class="number">0.7371854204632671</span> <span class="number">6.223250194626885</span> <span class="number">1</span></span><br><span class="line"><span class="number">1.865979496243379</span> <span class="number">11.56051031554393</span> <span class="number">1</span></span><br><span class="line"><span class="number">-0.8783262314523732</span> <span class="number">-7.611468197007481</span> <span class="number">1</span></span><br><span class="line"><span class="number">1.265644951917821</span> <span class="number">-6.001017447687869</span> <span class="number">1</span></span><br><span class="line"><span class="number">-0.6584297875451117</span> <span class="number">-0.04651328357152629</span> <span class="number">1</span></span><br><span class="line"><span class="number">-3.6337799169558007</span> <span class="number">5.063803558368734</span> <span class="number">1</span></span><br><span class="line"><span class="number">0.3570538505285441</span> <span class="number">9.959044788799691</span> <span class="number">1</span></span><br><span class="line"><span class="number">-3.5558274632663487</span> <span class="number">-10.498737552087386</span> <span class="number">1</span></span><br><span class="line"><span class="number">-0.2813420025495237</span> <span class="number">4.795824521302762</span> <span class="number">1</span></span><br><span class="line"><span class="number">3.8332918461348227</span> <span class="number">6.361473003348151</span> <span class="number">1</span></span><br><span class="line"><span class="number">1.8560631051352523</span> <span class="number">2.967595936514371</span> <span class="number">1</span></span><br><span class="line"><span class="number">2.420461786648654</span> <span class="number">-7.379660318665894</span> <span class="number">1</span></span><br><span class="line"><span class="number">1.3470563270222788</span> <span class="number">3.4893913843326407</span> <span class="number">1</span></span><br><span class="line"><span class="number">1.7278902882081404</span> <span class="number">5.80117720094238</span> <span class="number">1</span></span><br><span class="line"><span class="number">3.9562502923673053</span> <span class="number">0.41207455773998536</span> <span class="number">1</span></span><br><span class="line"><span class="number">-1.6005011639455882</span> <span class="number">-6.09309090290748</span> <span class="number">1</span></span><br><span class="line"><span class="number">-3.7098680010637555</span> <span class="number">-10.99313922671572</span> <span class="number">1</span></span><br><span class="line"><span class="number">1.3143883391615647</span> <span class="number">10.821468675108488</span> <span class="number">1</span></span><br><span class="line"><span class="number">3.268736427069408</span> <span class="number">6.111495023735211</span> <span class="number">1</span></span><br><span class="line"><span class="number">-0.7565987892895816</span> <span class="number">1.3980691787362378</span> <span class="number">1</span></span><br><span class="line"><span class="number">1.2591233366423547</span> <span class="number">-0.9831497059334406</span> <span class="number">1</span></span><br><span class="line"><span class="number">0.14359072155785935</span> <span class="number">3.494534030645144</span> <span class="number">1</span></span><br><span class="line"><span class="number">-3.8433462540908083</span> <span class="number">3.951941883121399</span> <span class="number">1</span></span><br><span class="line"><span class="number">1.4697939686655603</span> <span class="number">-5.599518604835492</span> <span class="number">1</span></span><br><span class="line"><span class="number">-3.780664866456174</span> <span class="number">-3.4864309189615064</span> <span class="number">1</span></span><br><span class="line"><span class="number">2.8036640330971343</span> <span class="number">6.7093178712957195</span> <span class="number">1</span></span><br><span class="line"><span class="number">2.914060600848707</span> <span class="number">10.568181206795376</span> <span class="number">1</span></span><br><span class="line"><span class="number">3.075690703667016</span> <span class="number">-5.494070292666359</span> <span class="number">1</span></span><br><span class="line"><span class="number">1.2476215555979637</span> <span class="number">-1.227957248822607</span> <span class="number">1</span></span><br><span class="line"><span class="number">-3.6979408908614797</span> <span class="number">-8.53864886006268</span> <span class="number">1</span></span><br><span class="line"><span class="number">-0.29778805466938074</span> <span class="number">-1.0308480183611515</span> <span class="number">1</span></span><br><span class="line"><span class="number">-1.3700582053779717</span> <span class="number">7.586894812672029</span> <span class="number">1</span></span><br><span class="line"><span class="number">-0.4551627828857958</span> <span class="number">-8.33802734849521</span> <span class="number">1</span></span><br><span class="line"><span class="number">-3.6398531372071696</span> <span class="number">-12.32039811842116</span> <span class="number">1</span></span><br><span class="line"><span class="number">-3.9905250265961367</span> <span class="number">-1.2746049190895494</span> <span class="number">1</span></span><br><span class="line"><span class="number">-1.9453103725425107</span> <span class="number">2.0946484479748344</span> <span class="number">1</span></span><br><span class="line"><span class="number">0.2177808569353319</span> <span class="number">-9.616021905809838</span> <span class="number">1</span></span><br><span class="line"><span class="number">2.8356861932674287</span> <span class="number">6.041557788259138</span> <span class="number">1</span></span><br><span class="line"><span class="number">1.8270389447333741</span> <span class="number">9.532644351097666</span> <span class="number">1</span></span><br><span class="line"><span class="number">0.23792638793364063</span> <span class="number">-9.580838569275198</span> <span class="number">1</span></span><br><span class="line"><span class="number">1.8798408251944139</span> <span class="number">4.99921390596133</span> <span class="number">1</span></span><br><span class="line"><span class="number">-3.590369332673248</span> <span class="number">1.9426909313823053</span> <span class="number">1</span></span><br><span class="line"><span class="number">0.6002997567953106</span> <span class="number">-3.503420724970665</span> <span class="number">1</span></span><br><span class="line"><span class="number">-3.9556552193617147</span> <span class="number">-11.364251432363737</span> <span class="number">1</span></span><br><span class="line"><span class="number">3.2769517222906765</span> <span class="number">-3.016506602206092</span> <span class="number">1</span></span><br><span class="line"><span class="number">-1.2469578613556882</span> <span class="number">-6.306123291381851</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/30/53-HYSBZ-2005能量采集 (莫比乌斯反演 + 分块)/" rel="next" title="【HYSBZ-2005】能量采集 (莫比乌斯反演 + 分块)">
+                <i class="fa fa-chevron-left"></i> 【HYSBZ-2005】能量采集 (莫比乌斯反演 + 分块)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Winsoul" />
+            
+              <p class="site-author-name" itemprop="name">Winsoul</p>
+              <p class="site-description motion-element" itemprop="description">要有梦想，即使遥远。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/qq_40861916" title="MY_CSDN博客" target="_blank">MY_CSDN博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://me.csdn.net/qq_40507857" title="队友紫芝博客" target="_blank">队友紫芝博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://me.csdn.net/qq_40873884" title="队友Amon_cj博客" target="_blank">队友Amon_cj博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CreateData-py"><span class="nav-number">1.</span> <span class="nav-text">CreateData.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#testdata-txt"><span class="nav-number">2.</span> <span class="nav-text">testdata.txt</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Winsoul</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.2</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://Winsoul.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2019/07/22/54-LogisticRegression(1)CreateData/';
+        this.page.identifier = '2019/07/22/54-LogisticRegression(1)CreateData/';
+        this.page.title = '《机器学习实战》Logistic回归学习笔记(一) 创建数据';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://Winsoul.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
