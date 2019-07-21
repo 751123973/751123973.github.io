@@ -108,18 +108,20 @@
 
 
 
-  <meta name="description" content="要有梦想，即使遥远。">
+  <meta name="description" content="123456789101112131415161718192021def plotBestFit(weights):    dataMat, labelMat = loadDataSet()    dataArr = np.array(dataMat)    n = np.shape(dataArr)[0]    xcord1 = []; ycord1 = []    xcord2 = []; y">
 <meta name="keywords" content="机器学习,学习笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《机器学习实战》Logistic回归学习笔记(二) 梯度上升优化算法">
 <meta property="og:url" content="http://yoursite.com/2019/07/22/55-LogisticRegression(2)Gradient/index.html">
 <meta property="og:site_name" content="Winsoul&#39;s Blog">
-<meta property="og:description" content="要有梦想，即使遥远。">
+<meta property="og:description" content="123456789101112131415161718192021def plotBestFit(weights):    dataMat, labelMat = loadDataSet()    dataArr = np.array(dataMat)    n = np.shape(dataArr)[0]    xcord1 = []; ycord1 = []    xcord2 = []; y">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-21T18:31:29.015Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190722022330607.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODYxOTE2,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-07-21T18:33:21.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《机器学习实战》Logistic回归学习笔记(二) 梯度上升优化算法">
-<meta name="twitter:description" content="要有梦想，即使遥远。">
+<meta name="twitter:description" content="123456789101112131415161718192021def plotBestFit(weights):    dataMat, labelMat = loadDataSet()    dataArr = np.array(dataMat)    n = np.shape(dataArr)[0]    xcord1 = []; ycord1 = []    xcord2 = []; y">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190722022330607.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODYxOTE2,size_16,color_FFFFFF,t_70">
 
 
 
@@ -382,7 +384,7 @@
                 
               
 
-              <time title="创建时间：2019-07-22 02:22:23 / 修改时间：02:31:29" itemprop="dateCreated datePublished" datetime="2019-07-22T02:22:23+08:00">2019-07-22</time>
+              <time title="创建时间：2019-07-22 02:22:23 / 修改时间：02:33:21" itemprop="dateCreated datePublished" datetime="2019-07-22T02:22:23+08:00">2019-07-22</time>
             
 
             
@@ -440,7 +442,13 @@
       
 
       
-        
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plotBestFit</span><span class="params">(weights)</span>:</span></span><br><span class="line">    dataMat, labelMat = loadDataSet()</span><br><span class="line">    dataArr = np.array(dataMat)</span><br><span class="line">    n = np.shape(dataArr)[<span class="number">0</span>]</span><br><span class="line">    xcord1 = []; ycord1 = []</span><br><span class="line">    xcord2 = []; ycord2 = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        <span class="keyword">if</span> int(labelMat[i] == <span class="number">1</span>):</span><br><span class="line">            xcord1.append(dataArr[i, <span class="number">1</span>])</span><br><span class="line">            ycord1.append(dataArr[i, <span class="number">2</span>])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            xcord2.append(dataArr[i, <span class="number">1</span>])</span><br><span class="line">            ycord2.append(dataArr[i, <span class="number">2</span>])</span><br><span class="line">    fig = plt.figure()</span><br><span class="line">    ax = fig.add_subplot(<span class="number">111</span>)</span><br><span class="line">    ax.scatter(xcord1, ycord1, s = <span class="number">30</span>, c = <span class="string">'red'</span>, marker = <span class="string">'s'</span>)</span><br><span class="line">    ax.scatter(xcord2, ycord2, s = <span class="number">30</span>, c = <span class="string">'green'</span>)</span><br><span class="line">    x = np.arange(<span class="number">-5.0</span>, <span class="number">5.0</span>, <span class="number">0.1</span>)</span><br><span class="line">    y = (-weights[<span class="number">0</span>] - weights[<span class="number">1</span>] * x)/weights[<span class="number">2</span>]</span><br><span class="line">    ax.plot(x, y)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dataArr, labelMat = loadDataSet()</span><br><span class="line">weights = gradAscent(dataArr, labelMat)</span><br><span class="line">print(weights)</span><br><span class="line">plotBestFit(weights.getA())</span><br></pre></td></tr></table></figure>
+<pre><code>[[ 1.56323942]
+ [ 0.22244791]
+ [-0.2243418 ]]
+</code></pre><p><img src="https://img-blog.csdnimg.cn/20190722022330607.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODYxOTE2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
       
     </div>
 
