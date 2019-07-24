@@ -118,7 +118,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190724111413289.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODYxOTE2,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190724111632467.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODYxOTE2,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-07-24T04:03:56.270Z">
+<meta property="og:updated_time" content="2019-07-24T04:07:13.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【数学】约束优化方法：拉格朗日乘子法 与 KKT条件">
 <meta name="twitter:description" content="拉格朗日乘子法与KKT条件引言约束条件可分为等式约束和不等式约束。如果是等式约束，可以直接利用拉格朗日乘子法(Lagrange Multiplier)求解最优值。对于不等式约束，可以转化为满足 KKT(Karush-Kuhn-Tucker) 条件后再利用拉格朗日乘子法求解。但是在一般情况下，这两个方法求得的结果只是必要条件，也就是可行解。而当目标函数是凸函数的情况下，才是充分必要条件，求得最优解。">
@@ -385,7 +385,7 @@
                 
               
 
-              <time title="创建时间：2019-07-24 12:03:37 / 修改时间：12:03:56" itemprop="dateCreated datePublished" datetime="2019-07-24T12:03:37+08:00">2019-07-24</time>
+              <time title="创建时间：2019-07-24 12:03:37 / 修改时间：12:07:13" itemprop="dateCreated datePublished" datetime="2019-07-24T12:03:37+08:00">2019-07-24</time>
             
 
             
@@ -447,6 +447,7 @@
 <h3 id="无约束优化"><a href="#无约束优化" class="headerlink" title="无约束优化"></a>无约束优化</h3><p>假设存在 $f(x)$ 是定义在 $R^n$ 上的连续可微函数，考虑无约束优化，求：<script type="math/tex">\min_xf(x)</script><br>我们可以直接使它导数为 $0$ 即可。</p>
 <h3 id="等式约束优化"><a href="#等式约束优化" class="headerlink" title="等式约束优化"></a>等式约束优化</h3><h4 id="原始问题"><a href="#原始问题" class="headerlink" title="原始问题"></a>原始问题</h4><p>假设存在 $f(x), h_i(x)$ 是定义在 $R^n$ 上的连续可微函数，考虑等式优化，求：<script type="math/tex">\min_xf(x)\\
 s.t.\ \ \ \ h_i(x) = 0,i=1,2,3,\dots,m</script><br>($s.t.$ 是 $subject\ to$ 的缩写，意为“受限于”，表示约束条件)<br>其中，$h_i(x) = 0$ 表示存在 $m$ 条形如 $h(x) = 0$ 的这种约束条件。<br>有等式约束条件的情况下，会把解限定在一个可行域内，即同时满足所有约束条件。</p>
+<a id="more"></a>
 <h4 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h4><p>我们尝试去理解利用约束函数和目标函数的法向量平行的性质去解决问题：<a href="https://www.zhihu.com/question/38586401/answer/457058079" target="_blank" rel="noopener">这个链接</a><br><img src="https://img-blog.csdnimg.cn/20190724111413289.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODYxOTE2,size_16,color_FFFFFF,t_70" alt=""><br>我们用拉格朗日乘子法构造拉格朗日函数：</p>
 <script type="math/tex; mode=display">\mathscr{L}(x,\alpha)=f(x) + \sum_{i=1}^m\alpha_ih_i(x)</script><p>其中 $\alpha_i$ 就是拉格朗日乘子。<br>因此我们可以得到：</p>
 <script type="math/tex; mode=display">\begin{cases}\\

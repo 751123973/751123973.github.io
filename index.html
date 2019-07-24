@@ -385,7 +385,7 @@
                 
               
 
-              <time title="创建时间：2019-07-24 12:03:37 / 修改时间：12:03:56" itemprop="dateCreated datePublished" datetime="2019-07-24T12:03:37+08:00">2019-07-24</time>
+              <time title="创建时间：2019-07-24 12:03:37 / 修改时间：12:07:13" itemprop="dateCreated datePublished" datetime="2019-07-24T12:03:37+08:00">2019-07-24</time>
             
 
             
@@ -436,9 +436,10 @@
 
       
         
-          
-          拉格朗日乘子法与KKT条件引言约束条件可分为等式约束和不等式约束。如果是等式约束，可以直接利用拉格朗日乘子法(Lagrange Multiplier)求解最优值。对于不等式约束，可以转化为满足 KKT(Karush-Kuhn-Tucker) 条件后再利用拉格朗日乘子法求解。但是在一般情况下，这两个方
-          ...
+          <h2 id="拉格朗日乘子法与KKT条件"><a href="#拉格朗日乘子法与KKT条件" class="headerlink" title="拉格朗日乘子法与KKT条件"></a>拉格朗日乘子法与KKT条件</h2><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>约束条件可分为等式约束和不等式约束。如果是等式约束，可以直接利用拉格朗日乘子法(Lagrange Multiplier)求解最优值。对于不等式约束，可以转化为满足 KKT(Karush-Kuhn-Tucker) 条件后再利用拉格朗日乘子法求解。但是在一般情况下，这两个方法求得的结果只是必要条件，也就是<strong>可行解</strong>。而当目标函数是凸函数的情况下，才是充分必要条件，求得<strong>最优解</strong>。</p>
+<h3 id="无约束优化"><a href="#无约束优化" class="headerlink" title="无约束优化"></a>无约束优化</h3><p>假设存在 $f(x)$ 是定义在 $R^n$ 上的连续可微函数，考虑无约束优化，求：<script type="math/tex">\min_xf(x)</script><br>我们可以直接使它导数为 $0$ 即可。</p>
+<h3 id="等式约束优化"><a href="#等式约束优化" class="headerlink" title="等式约束优化"></a>等式约束优化</h3><h4 id="原始问题"><a href="#原始问题" class="headerlink" title="原始问题"></a>原始问题</h4><p>假设存在 $f(x), h_i(x)$ 是定义在 $R^n$ 上的连续可微函数，考虑等式优化，求：<script type="math/tex">\min_xf(x)\\
+s.t.\ \ \ \ h_i(x) = 0,i=1,2,3,\dots,m</script><br>($s.t.$ 是 $subject\ to$ 的缩写，意为“受限于”，表示约束条件)<br>其中，$h_i(x) = 0$ 表示存在 $m$ 条形如 $h(x) = 0$ 的这种约束条件。<br>有等式约束条件的情况下，会把解限定在一个可行域内，即同时满足所有约束条件。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/07/24/56-拉格朗日乘子法与KKT条件/#more" rel="contents">
