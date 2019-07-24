@@ -108,23 +108,28 @@
 
 
 
-  <meta name="description" content="要有梦想，即使遥远。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Winsoul&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2018/page/3/index.html">
+  <meta name="description" content="拉格朗日乘子法与KKT条件引言约束条件可分为等式约束和不等式约束。如果是等式约束，可以直接利用拉格朗日乘子法(Lagrange Multiplier)求解最优值。对于不等式约束，可以转化为满足 KKT(Karush-Kuhn-Tucker) 条件后再利用拉格朗日乘子法求解。但是在一般情况下，这两个方法求得的结果只是必要条件，也就是可行解。而当目标函数是凸函数的情况下，才是充分必要条件，求得最优解。">
+<meta name="keywords" content="机器学习,学习笔记,数学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【数学】约束优化方法：拉格朗日乘子法 与 KKT条件">
+<meta property="og:url" content="http://yoursite.com/2019/07/24/56-拉格朗日乘子法与KKT条件/index.html">
 <meta property="og:site_name" content="Winsoul&#39;s Blog">
-<meta property="og:description" content="要有梦想，即使遥远。">
+<meta property="og:description" content="拉格朗日乘子法与KKT条件引言约束条件可分为等式约束和不等式约束。如果是等式约束，可以直接利用拉格朗日乘子法(Lagrange Multiplier)求解最优值。对于不等式约束，可以转化为满足 KKT(Karush-Kuhn-Tucker) 条件后再利用拉格朗日乘子法求解。但是在一般情况下，这两个方法求得的结果只是必要条件，也就是可行解。而当目标函数是凸函数的情况下，才是充分必要条件，求得最优解。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190724111413289.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODYxOTE2,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190724111632467.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODYxOTE2,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-07-24T04:03:56.270Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Winsoul&#39;s Blog">
-<meta name="twitter:description" content="要有梦想，即使遥远。">
+<meta name="twitter:title" content="【数学】约束优化方法：拉格朗日乘子法 与 KKT条件">
+<meta name="twitter:description" content="拉格朗日乘子法与KKT条件引言约束条件可分为等式约束和不等式约束。如果是等式约束，可以直接利用拉格朗日乘子法(Lagrange Multiplier)求解最优值。对于不等式约束，可以转化为满足 KKT(Karush-Kuhn-Tucker) 条件后再利用拉格朗日乘子法求解。但是在一般情况下，这两个方法求得的结果只是必要条件，也就是可行解。而当目标函数是凸函数的情况下，才是充分必要条件，求得最优解。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190724111413289.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODYxOTE2,size_16,color_FFFFFF,t_70">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/page/3/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/07/24/56-拉格朗日乘子法与KKT条件/"/>
 
 
 
@@ -134,7 +139,7 @@
   };
 </script>
 
-  <title>归档 | Winsoul's Blog</title>
+  <title>【数学】约束优化方法：拉格朗日乘子法 与 KKT条件 | Winsoul's Blog</title>
   
 
 
@@ -181,7 +186,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -246,7 +251,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />总览</a>
   </li>
@@ -318,368 +323,233 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/24/56-拉格朗日乘子法与KKT条件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Winsoul">
+      <meta itemprop="description" content="要有梦想，即使遥远。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Winsoul's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h1 class="post-title" itemprop="name headline">【数学】约束优化方法：拉格朗日乘子法 与 KKT条件
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-24 12:03:37 / 修改时间：12:03:56" itemprop="dateCreated datePublished" datetime="2019-07-24T12:03:37+08:00">2019-07-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
           
-        不错! 目前共计 63 篇日志。 继续努力。
-      </span>
-      
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/07/24/56-拉格朗日乘子法与KKT条件/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/07/24/56-拉格朗日乘子法与KKT条件/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/06/31-manacher马拉车算法/" itemprop="url">
-              
-                <span itemprop="name">【每日一题(31)】马拉车算法(最长回文子串 HihoCoder - 1032)(最长回文 HDU-3068)</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-06T22:36:08+08:00"
-              content="2018-04-06" >
-          04-06
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/06/30-AC自动机/" itemprop="url">
-              
-                <span itemprop="name">【每日一题(30)】Keywords Search(AC自动机模版题) HDU-2222</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-06T22:24:20+08:00"
-              content="2018-04-06" >
-          04-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/14/29-xinshengsai/" itemprop="url">
-              
-                <span itemprop="name">【每日一题(29)】SUST第一届ACM校赛题解</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-14T22:44:58+08:00"
-              content="2018-03-14" >
-          03-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/09/28-mergesort/" itemprop="url">
-              
-                <span itemprop="name">【每日一题(28)】高等排序算法(2) 归并排序(MergeSort)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-09T23:54:18+08:00"
-              content="2018-03-09" >
-          03-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/08/27-quicksort/" itemprop="url">
-              
-                <span itemprop="name">【每日一题(27)】高等排序算法(1) 快速排序(QuickSort)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-08T22:28:35+08:00"
-              content="2018-03-08" >
-          03-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        <h2 id="拉格朗日乘子法与KKT条件"><a href="#拉格朗日乘子法与KKT条件" class="headerlink" title="拉格朗日乘子法与KKT条件"></a>拉格朗日乘子法与KKT条件</h2><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>约束条件可分为等式约束和不等式约束。如果是等式约束，可以直接利用拉格朗日乘子法(Lagrange Multiplier)求解最优值。对于不等式约束，可以转化为满足 KKT(Karush-Kuhn-Tucker) 条件后再利用拉格朗日乘子法求解。但是在一般情况下，这两个方法求得的结果只是必要条件，也就是<strong>可行解</strong>。而当目标函数是凸函数的情况下，才是充分必要条件，求得<strong>最优解</strong>。</p>
+<h3 id="无约束优化"><a href="#无约束优化" class="headerlink" title="无约束优化"></a>无约束优化</h3><p>假设存在 $f(x)$ 是定义在 $R^n$ 上的连续可微函数，考虑无约束优化，求：<script type="math/tex">\min_xf(x)</script><br>我们可以直接使它导数为 $0$ 即可。</p>
+<h3 id="等式约束优化"><a href="#等式约束优化" class="headerlink" title="等式约束优化"></a>等式约束优化</h3><h4 id="原始问题"><a href="#原始问题" class="headerlink" title="原始问题"></a>原始问题</h4><p>假设存在 $f(x), h_i(x)$ 是定义在 $R^n$ 上的连续可微函数，考虑等式优化，求：<script type="math/tex">\min_xf(x)\\
+s.t.\ \ \ \ h_i(x) = 0,i=1,2,3,\dots,m</script><br>($s.t.$ 是 $subject\ to$ 的缩写，意为“受限于”，表示约束条件)<br>其中，$h_i(x) = 0$ 表示存在 $m$ 条形如 $h(x) = 0$ 的这种约束条件。<br>有等式约束条件的情况下，会把解限定在一个可行域内，即同时满足所有约束条件。</p>
+<h4 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h4><p>我们尝试去理解利用约束函数和目标函数的法向量平行的性质去解决问题：<a href="https://www.zhihu.com/question/38586401/answer/457058079" target="_blank" rel="noopener">这个链接</a><br><img src="https://img-blog.csdnimg.cn/20190724111413289.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODYxOTE2,size_16,color_FFFFFF,t_70" alt=""><br>我们用拉格朗日乘子法构造拉格朗日函数：</p>
+<script type="math/tex; mode=display">\mathscr{L}(x,\alpha)=f(x) + \sum_{i=1}^m\alpha_ih_i(x)</script><p>其中 $\alpha_i$ 就是拉格朗日乘子。<br>因此我们可以得到：</p>
+<script type="math/tex; mode=display">\begin{cases}\\
+{\partial\mathscr{L}(x,\alpha)\over \partial x} = 0\\
+{\partial\mathscr{L}(x,\alpha)\over \partial\alpha} = 0\\
+\end{cases}</script><p>联立以上方程，求解出 $x$，即是目标函数满足等式约束关系的可行解。<br>由上可以看出，拉格朗日乘子法，可以将带有约束关系的原始问题，简化为没有约束关系的拉格朗日函数，最后求解拉格朗日函数即可。</p>
+<h3 id="不等式优化约束"><a href="#不等式优化约束" class="headerlink" title="不等式优化约束"></a>不等式优化约束</h3><h4 id="原始问题-1"><a href="#原始问题-1" class="headerlink" title="原始问题"></a>原始问题</h4><p>假设存在 $f(x),g_i(x)$ 是定义在 $R^n$ 上的连续可微函数，考虑不等式约束优化，求：</p>
+<script type="math/tex; mode=display">\min_{x\in R^n}f(x)\\
+s.t.\ \ \ \ g_i(x) \leq 0,\  i=1,2,3,\dots,k</script><p>其中 $g_i(x) \leq 0$ 表示存在 $k$ 条形如 $g(x) \leq 0$ 的这种约束条件。</p>
+<h4 id="求解-1"><a href="#求解-1" class="headerlink" title="求解"></a>求解</h4><p>有不等式约束条件的情况下，会把解限定在一个可行域内，即同时满足所有约束条件。目标函数的等高线和约束区域如图：<br><img src="https://img-blog.csdnimg.cn/20190724111632467.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODYxOTE2,size_16,color_FFFFFF,t_70" alt=""><br>显然，可行解 $x$ 只能在 $g(x) \neq 0$ 取得：<br>&nbsp;&nbsp;&nbsp;&nbsp;1. 当可行解满足 $g(x) &lt; 0$，此时极小化 $f(x)$ 即可。<br>&nbsp;&nbsp;&nbsp;&nbsp;2. 当可行解满足 $g(x)=0$， 此时等价于等式约束条件。<br>同样，我们也对约束关系构造拉格朗日函数：</p>
+<script type="math/tex; mode=display">\mathscr{L}(x,\beta) = f(x) + \sum_{i=1}^k\beta_ig_i(x)</script><p>所以我们可以假设以下情况：<br>&nbsp;&nbsp;&nbsp;&nbsp;1. 可行解满足 $g(x)=0$，此时 $\beta g(x)=0$，即 $\mathscr{L}(x,\beta) = f(x)$，直接求解原函数的极小值。<br>&nbsp;&nbsp;&nbsp;&nbsp;2. 可行解满足 $g(x)<0$，此时令 $\beta="0$，因此" g(x)="0$，即" $\mathscr{l}(x,\beta)="f(x)$，直接求解原函数的极小值。" <br=""><br>因此现在的问题变成了 $\beta$ 如何取得合适的值。在不等式优化中，如果 $\beta=0$，此时的可行解是落在约束区域内的。而如果 $\beta\;$≠$\;0$，此时的可行解落在区域边界上，这时可行解应该要尽量靠近无约束时的解，因此在约束边界上，目标函数的负梯度方向应该与约束边界的梯度平行。</0$，此时令></p>
+<script type="math/tex; mode=display">-{\partial f(x)\over \partial x} = \beta{\partial g(x) \over \partial x}</script><p>由此可见，$\beta \geq 0$。且对于不等式约束，只要满足一定条件，也一样可以使用拉格朗日函数求解。这里的条件，就是 KKT条件。</p>
+<h3 id="KKT-条件"><a href="#KKT-条件" class="headerlink" title="KKT 条件"></a>KKT 条件</h3><h4 id="原始问题-2"><a href="#原始问题-2" class="headerlink" title="原始问题"></a>原始问题</h4><p>假设存在 $f(x),h_i(x),g_j(x)$ 是定义在 $R^n$ 上的连续可微函数，考虑约束优化问题：</p>
+<script type="math/tex; mode=display">\min_{x\in R^n}f(x)\\
+s.t.\ \ \ \ h_i(x) = 0,\  i=1,2,3,\dots,m\\
+\ \ \ \ \ \ \ g_j(x)\leq0,\  j=1,2,3,\dots ,k</script><p>如果约束条件满足以下 KKT条件，也可以使用拉格朗日函数求解：</p>
+<script type="math/tex; mode=display">\mathscr{L}(x, \alpha, \beta)=f(x)+\sum_{i=1}^m\alpha_ih_i(x) + \sum_{j=1}^k\beta_jg_j(x)</script><p>其中 KKT条件：</p>
+<script type="math/tex; mode=display">\begin{aligned}\\
+{\partial \mathscr{L}(x, \alpha, \beta)\over\partial x}&=0 \\
+h_i(x)&=0,\ i =1,2,3,\dots,m\\
+g_j(x)&\leq0,\ j=1,2,3,\dots,k\\
+\beta_jg_j(x)&=0,\ j=1,2,3,\dots,k\\
+\beta_j&\geq0,j=1,2,3,\dots,k\\
+\end{aligned}</script>
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/07/26-shellsort-update/" itemprop="url">
-              
-                <span itemprop="name">【每日一题(26)】初等排序算法(3) 插入排序 希尔排序 (更正)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-07T22:55:42+08:00"
-              content="2018-03-07" >
-          03-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/06/25-shellsort/" itemprop="url">
-              
-                <span itemprop="name">【每日一题(25)】初等排序算法(2) 希尔排序(shell sort)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-06T22:56:26+08:00"
-              content="2018-03-06" >
-          03-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/05/24-chudeng sort/" itemprop="url">
-              
-                <span itemprop="name">【每日一题(24)】初等排序算法(1) 冒泡 选择 插入</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-05T21:34:35+08:00"
-              content="2018-03-05" >
-          03-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+          
+            <a href="/tags/数学/" rel="tag"># 数学</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/22/55-LogisticRegression(2)Gradientascent/" rel="next" title="【机器学习】Logistic回归学习笔记(二) 梯度上升优化算法">
+                <i class="fa fa-chevron-left"></i> 【机器学习】Logistic回归学习笔记(二) 梯度上升优化算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2018/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/archives/2018/">1</a><a class="page-number" href="/archives/2018/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
+  </article>
 
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -700,8 +570,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -829,6 +708,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#拉格朗日乘子法与KKT条件"><span class="nav-number">1.</span> <span class="nav-text">拉格朗日乘子法与KKT条件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-number">1.1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无约束优化"><span class="nav-number">1.2.</span> <span class="nav-text">无约束优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等式约束优化"><span class="nav-number">1.3.</span> <span class="nav-text">等式约束优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原始问题"><span class="nav-number">1.3.1.</span> <span class="nav-text">原始问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#求解"><span class="nav-number">1.3.2.</span> <span class="nav-text">求解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不等式优化约束"><span class="nav-number">1.4.</span> <span class="nav-text">不等式优化约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原始问题-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">原始问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#求解-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">求解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KKT-条件"><span class="nav-number">1.5.</span> <span class="nav-text">KKT 条件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原始问题-2"><span class="nav-number">1.5.1.</span> <span class="nav-text">原始问题</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -988,6 +883,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
 
   
 
@@ -1002,6 +901,23 @@
     <script id="dsq-count-scr" src="https://Winsoul.disqus.com/count.js" async></script>
   
 
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2019/07/24/56-拉格朗日乘子法与KKT条件/';
+        this.page.identifier = '2019/07/24/56-拉格朗日乘子法与KKT条件/';
+        this.page.title = '【数学】约束优化方法：拉格朗日乘子法 与 KKT条件';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://Winsoul.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
   
 
 
@@ -1353,6 +1269,30 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
